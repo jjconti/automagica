@@ -5,7 +5,7 @@ Generate .epub file
 import os
 import subprocess
 
-from utils import filepath
+from utils import filepath, show_file
 
 
 def generate_epub(book_path, base_filename, tex_file):
@@ -21,6 +21,4 @@ def generate_epub(book_path, base_filename, tex_file):
         os.unlink(epub_file)
         raise ValueError('Error {} executing command: {}'.format(retcode, ' '.join(cmd)))
     else:
-        #os.startfile(pdf_filename)
-        #subprocess.call(["xdg-open", file])
-        subprocess.call(['open', epub_file])
+        show_file(epub_file)

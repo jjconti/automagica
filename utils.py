@@ -2,6 +2,17 @@
 
 
 import os
+import subprocess
+import sys
+
+
+def show_file(filepath):
+    if sys.platform.startswith('darwin'):
+        subprocess.call(('open', filepath))
+    elif os.name == 'nt':
+        os.startfile(filepath)
+    elif os.name == 'posix':
+        subprocess.call(('xdg-open', filepath))
 
 
 def filepath(path, base_name, ext):

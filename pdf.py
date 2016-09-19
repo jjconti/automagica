@@ -5,7 +5,7 @@ Generate .pdf file
 import os
 import subprocess
 
-from utils import filepath
+from utils import filepath, show_file
 
 
 def generate_pdf(book_path, base_filename, tex_file):
@@ -28,6 +28,4 @@ def generate_pdf(book_path, base_filename, tex_file):
         os.unlink(pdf_file)
         raise ValueError('Error {} executing command: {}'.format(retcode, ' '.join(cmd)))
     else:
-        #os.startfile(pdf_filename)
-        #subprocess.call(["xdg-open", file])
-        subprocess.call(['open', pdf_file])
+        show_file(pdf_file)
