@@ -1,0 +1,93 @@
+\documentclass[{FONT_SIZE}pt,twoside,openright]{{book}}
+
+\usepackage[{PAGE_SIZE},hmarginratio={{3:2}},bottom=0.8in,top=0.8in]{{geometry}}
+
+\usepackage{{times}}
+\usepackage[Lenny]{{fncychap}}
+
+\usepackage[spanish]{{babel}}
+\usepackage[utf8]{{inputenc}}
+\usepackage[T1]{{fontenc}}
+
+\usepackage{{mathptmx}}
+\usepackage{{etoolbox}}
+
+\usepackage[titles]{{tocloft}}
+
+\usepackage{{pdfpages}}
+
+\renewcommand{{\cftchapleader}}{{\cftdotfill{{\cftdotsep}}}}
+
+% change the space before the titles
+\makeatletter
+\patchcmd{{\@makechapterhead}}{{\vspace*{{50\p@}}}}{{\vspace*{{0pt}}}}{{}}{{}}
+\patchcmd{{\@makeschapterhead}}{{\vspace*{{50\p@}}}}{{\vspace*{{0pt}}}}{{}}{{}}
+\makeatother
+
+% change the space after the titles
+\renewcommand{{\DOTI}}[1]{{%
+    \raggedright
+    \CTV\FmTi{{#1}}\par\nobreak
+    \vskip 10pt}}
+\renewcommand{{\DOTIS}}[1]{{%
+    \raggedright
+    \CTV\FmTi{{#1}}\par\nobreak
+    \vskip 10pt}}
+
+
+\title{{{TITLE}}}
+\author{{{AUTHOR}}}
+\date{{}}
+
+
+% Avoid widows and orphans
+\widowpenalty=10000
+\clubpenalty=10000
+
+\begin{{document}}
+
+\pagestyle{{plain}}
+
+
+% IF PRINT
+%\includepdf{{empty.pdf}}
+%\includepdf{{empty.pdf}}
+
+\maketitle
+
+\cleardoublepage
+
+\thispagestyle{{empty}}
+\noindent
+Edición automágica, {YEAR}.\\
+
+\vspace{{0.5cm}}
+
+\noindent
+\emph{{{TITLE}}} lleva la licencia
+\emph{{Creative Commons Attribution - NonCommercial - ShareAlike 4.0 Iternational}}.
+Esto significa que podés compartir esta obra y crear obras derivadas
+mencionando al autor, pero no ha\-cer un uso comercial de ella.
+
+\vfill
+
+\noindent
+%Más información sobre este libro:\\
+{URL}\\
+
+\cleardoublepage
+
+%\cleardoublepage
+
+\renewcommand*\contentsname{{{INDEX_TITLE}}}
+
+\tableofcontents
+
+{CONTENT}
+
+\cleardoublepage
+
+%IMPRENTA
+%\includepdf{{empty.pdf}}
+
+\end{{document}}

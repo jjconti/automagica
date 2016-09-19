@@ -1,0 +1,4 @@
+dentista.txt
+fantasmas.txt
+notebook.txt
+paredon.txt
