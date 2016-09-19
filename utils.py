@@ -32,3 +32,7 @@ def latex_chapter(path, split_paragraphs=False):
         lines[0] = latex_chapter_title(lines[0])
         sep = "\n" if split_paragraphs else " "
         return sep.join(lines)
+
+
+def latex_hyphenation(word):
+    return "\hyphenation{{{word}}}".format(word=word)

@@ -8,7 +8,7 @@ import os
 
 from epub import generate_epub
 from pdf import generate_pdf
-from utils import latex_chapter, filepath
+from utils import latex_chapter, filepath, latex_hyphenation
 
 DEFAULTS = dict(
     TITLE="TITLE",
@@ -18,6 +18,8 @@ DEFAULTS = dict(
     YEAR=datetime.now().year,
     URL='',
     INDEX_TITLE="Índice",
+    HYPHENATION="",
+    CONTENT=""
 )
 
 parser = argparse.ArgumentParser()
@@ -37,11 +39,21 @@ VARS = DEFAULTS.copy()
 VARS.update(config.CONFIGS)
 
 index_path = os.path.join(book_path, 'index.txt')
-with open(index_path, 'r') as f:
-    content = ""
-    for filename in f.readlines():
-        content += latex_chapter(os.path.join(book_path, filename).strip(), args.split_paragraphs)
-    VARS['CONTENT'] = content
+
+if os.path.isfile(index_path):
+    with open(index_path, 'r') as f:
+        content = ""
+        for filename in f.readlines():
+            content += latex_chapter(os.path.join(book_path, filename).strip(), args.split_paragraphs)
+        VARS['CONTENT'] = content
+
+sep_path = os.path.join(book_path, 'words.txt')
+if os.path.isfile(sep_path):
+    with open(sep_path, 'r') as f:
+        hyphenation = ""
+        for word in f.readlines():
+            hyphenation += latex_hyphenation(word.strip())
+        VARS['HYPHENATION'] = hyphenation
 
 TEMPLATE = 'template.tex'
 
