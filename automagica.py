@@ -22,6 +22,7 @@ DEFAULTS = dict(
 
 parser = argparse.ArgumentParser()
 parser.add_argument('book_path', help="Carpeta con archivos para un libro.", metavar='carpeta')
+parser.add_argument('--split-paragraphs', help="Separar párrafos.", action='store_true')
 parser.add_argument('--pdf', help="Genera la versión pdf del libro.", action='store_true')
 parser.add_argument('--epub', help="Genera la versión epub del libro.", action='store_true')
 args = parser.parse_args()
@@ -39,7 +40,7 @@ index_path = os.path.join(book_path, 'index.txt')
 with open(index_path, 'r') as f:
     content = ""
     for filename in f.readlines():
-        content += latex_chapter(os.path.join(book_path, filename).strip())
+        content += latex_chapter(os.path.join(book_path, filename).strip(), args.split_paragraphs)
     VARS['CONTENT'] = content
 
 TEMPLATE = 'template.tex'

@@ -15,8 +15,9 @@ def latex_chapter_title(title, index_title=None):
         title=title, index_title=index_title)
 
 
-def latex_chapter(path):
+def latex_chapter(path, split_paragraphs=False):
     with open(path, 'r') as f:
         lines = f.readlines()
         lines[0] = latex_chapter_title(lines[0])
-        return " ".join(lines)
+        sep = "\n" if split_paragraphs else " "
+        return sep.join(lines)
