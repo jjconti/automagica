@@ -29,3 +29,5 @@ def generate_pdf(book_path, base_filename, tex_file):
         raise ValueError('Error {} executing command: {}'.format(retcode, ' '.join(cmd)))
     else:
         show_file(pdf_file)
+
+    return pdf_file

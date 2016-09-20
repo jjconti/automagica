@@ -8,6 +8,7 @@ import os
 
 from epub import generate_epub
 from pdf import generate_pdf
+from pdf.booklet import generate_booklet
 from utils import latex_chapter, filepath, latex_hyphenation
 
 DEFAULTS = dict(
@@ -26,6 +27,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument('book_path', help="Carpeta con archivos para un libro.", metavar='carpeta')
 parser.add_argument('--split-paragraphs', help="Separar párrafos.", action='store_true')
 parser.add_argument('--pdf', help="Genera la versión pdf del libro.", action='store_true')
+parser.add_argument('--booklet', help="Genera la versión booklet del pdf.", action='store_true')
 parser.add_argument('--epub', help="Genera la versión epub del libro.", action='store_true')
 args = parser.parse_args()
 book_path = args.book_path
@@ -66,6 +68,8 @@ with open(tex_file, 'w') as f:
     f.write(template.format(**VARS))
 
 if args.pdf or not args.epub:
-    generate_pdf(book_path, config.BASE_FILENAME, tex_file)
+    pdf_file = generate_pdf(book_path, config.BASE_FILENAME, tex_file)
+    if args.booklet:
+        generate_booklet(pdf_file, filepath(book_path, config.BASE_FILENAME, 'booklet.pdf'))
 if args.epub:
     generate_epub(book_path, config.BASE_FILENAME, tex_file)
