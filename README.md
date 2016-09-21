@@ -4,14 +4,21 @@ Permite crear en forma fácil libros listos para la imprenta o para distribuir d
 
 Funciona en Linux, OS X y Windows.
 
-# Requerimientos
+# Instalación
+
+## Requerimientos
 
 * pdflatex
 * python 2
 * pandoc
 * pdfrw
 
-# En Windows
+## En Linux
+
+* apt-get install pandoc, texlive-full
+* pip install pdfwr
+
+## En Windows
 
 * http://mirror.ctan.org/systems/texlive/tlnet/install-tl-windows.exe (para tener pdflatex.exe)
 * https://github.com/jgm/pandoc/releases/download/1.17.2/pandoc-1.17.2-windows.msi
@@ -24,3 +31,10 @@ Funciona en Linux, OS X y Windows.
   - Reiniciar cmd.
 * Para instalar pdfrw abrir cmd para entrar a la línea de comandos y ejecutar:
   - C:\Python27\Scripts\pip.exe install pdfrw
+
+# Uso
+
+`python automagica.py ejemplo` genera la versión en pdf del libro en la caprpeta ejemplo.
+
+
+`python automagica.py --pdf --bookle --epub ejemplo` genera la versión en pdf, pdf booklet y epub del libro en la caprpeta ejemplo.
