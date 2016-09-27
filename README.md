@@ -31,6 +31,7 @@ Funciona en Linux, OS X y Windows.
   - Reiniciar cmd.
 * Para instalar pdfrw abrir cmd para entrar a la línea de comandos y ejecutar:
   - C:\Python27\Scripts\pip.exe install pdfrw
+* Bajar el .zip de automágica desde esta misma página.
 
 # Uso
 
