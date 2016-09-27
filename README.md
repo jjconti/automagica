@@ -4,6 +4,8 @@ Permite crear en forma fácil libros listos para la imprenta o para distribuir d
 
 Funciona en Linux, OS X y Windows.
 
+[![Estado actual de Automágica](https://img.youtube.com/vi/BtyG786BUmo/0.jpg)](https://www.youtube.com/watch?v=BtyG786BUmo)
+
 # Instalación
 
 ## Requerimientos
