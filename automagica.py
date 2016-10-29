@@ -5,11 +5,16 @@ import argparse
 from datetime import datetime
 import imp
 import os
+import sys
 
 from epub import generate_epub
 from pdf import generate_pdf
 from pdf.booklet import generate_booklet
-from utils import latex_chapter, filepath, latex_hyphenation
+from utils import latex_chapter, filepath, latex_hyphenation, latex_part
+
+
+reload(sys)
+sys.setdefaultencoding('utf8')
 
 DEFAULTS = dict(
     TITLE="TITLE",
@@ -18,24 +23,37 @@ DEFAULTS = dict(
     PAGE_SIZE='a5paper',
     YEAR=datetime.now().year,
     URL='',
+    INCLUDE_INDEX=True,
     INDEX_TITLE="Índice",
     HYPHENATION="",
-    CONTENT=""
+    CONTENT="",
+    SPLIT=True
 )
+
 
 parser = argparse.ArgumentParser()
 parser.add_argument('book_path', help="Carpeta con archivos para un libro.", metavar='carpeta')
-parser.add_argument('--split-paragraphs', help="Separar párrafos.", action='store_true')
+parser.add_argument('--no-split', help="No separar párrafos.", action='store_true')
 parser.add_argument('--pdf', help="Genera la versión pdf del libro.", action='store_true')
 parser.add_argument('--booklet', help="Genera la versión booklet del pdf.", action='store_true')
 parser.add_argument('--epub', help="Genera la versión epub del libro.", action='store_true')
 args = parser.parse_args()
 book_path = args.book_path
 
+
+class EmptyConfig(object):
+    pass
+
 if not os.path.isdir(book_path):
     print("El argumento debe ser un directorio")
     exit()
-config = imp.load_source('config', os.path.join(book_path, 'config.py'))
+config_file = os.path.join(book_path, 'config.py')
+if os.path.isfile(config_file):
+    config = imp.load_source('config', config_file)
+else:
+    config = EmptyConfig()
+    config.CONFIGS = {}
+    config.BASE_FILENAME = 'default'
 
 VARS = DEFAULTS.copy()
 VARS.update(config.CONFIGS)
@@ -46,8 +64,13 @@ if os.path.isfile(index_path):
     with open(index_path, 'r') as f:
         content = ""
         for filename in f.readlines():
-            content += latex_chapter(os.path.join(book_path, filename).strip(), args.split_paragraphs)
+            content += latex_part(os.path.join(book_path, filename).strip(), not args.no_split or VARS['SPLIT'])
         VARS['CONTENT'] = content
+
+if VARS['INCLUDE_INDEX']:
+    VARS['INDEX'] = '\\renewcommand*\\contentsname{{{INDEX_TITLE}}}'.format(**VARS)
+    VARS['INDEX'] += '\n'
+    VARS['INDEX'] += '\\tableofcontents'
 
 sep_path = os.path.join(book_path, 'words.txt')
 if os.path.isfile(sep_path):
