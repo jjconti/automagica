@@ -1,72 +1,72 @@
-\documentclass[{FONT_SIZE}pt,twoside,openright]{{book}}
+\documentclass[var{FONT_SIZE}pt,twoside,openright]{book}
 
-\usepackage[{PAGE_SIZE},hmarginratio={{3:2}},bottom=0.8in,top=0.8in]{{geometry}}
+\usepackage[var{PAGE_SIZE},hmarginratio={3:2},bottom=0.8in,top=0.8in]{geometry}
 
-\usepackage{{times}}
-\usepackage[Lenny]{{fncychap}}
+\usepackage{times}
+\usepackage[Lenny]{fncychap}
 
-\usepackage[spanish]{{babel}}
-\usepackage[utf8]{{inputenc}}
-\usepackage[T1]{{fontenc}}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
 
-\usepackage{{mathptmx}}
-\usepackage{{etoolbox}}
+\usepackage{mathptmx}
+\usepackage{etoolbox}
 
-\usepackage[titles]{{tocloft}}
+\usepackage[titles]{tocloft}
 
-\usepackage{{pdfpages}}
+\usepackage{pdfpages}
 
-\renewcommand{{\cftchapleader}}{{\cftdotfill{{\cftdotsep}}}}
+\renewcommand{\cftchapleader}{\cftdotfill{\cftdotsep}}
 
 % change the space before the titles
 \makeatletter
-\patchcmd{{\@makechapterhead}}{{\vspace*{{50\p@}}}}{{\vspace*{{0pt}}}}{{}}{{}}
-\patchcmd{{\@makeschapterhead}}{{\vspace*{{50\p@}}}}{{\vspace*{{0pt}}}}{{}}{{}}
+\patchcmd{\@makechapterhead}{\vspace*{50\p@}}{\vspace*{0pt}}{}{}
+\patchcmd{\@makeschapterhead}{\vspace*{50\p@}}{\vspace*{0pt}}{}{}
 \makeatother
 
 % change the space after the titles
-\renewcommand{{\DOTI}}[1]{{%
+\renewcommand{\DOTI}[1]{%
     \raggedright
-    \CTV\FmTi{{#1}}\par\nobreak
-    \vskip 10pt}}
-\renewcommand{{\DOTIS}}[1]{{%
+    \CTV\FmTi{#1}\par\nobreak
+    \vskip 10pt}
+\renewcommand{\DOTIS}[1]{%
     \raggedright
-    \CTV\FmTi{{#1}}\par\nobreak
-    \vskip 10pt}}
+    \CTV\FmTi{#1}\par\nobreak
+    \vskip 10pt}
 
 
-\title{{{TITLE}}}
-\author{{{AUTHOR}}}
-\date{{}}
+\title{var{TITLE}}
+\author{var{AUTHOR}}
+\date{}
 
-{HYPHENATION}
+var{HYPHENATION}
 
 % Avoid widows and orphans
 \widowpenalty=10000
 \clubpenalty=10000
 
-\begin{{document}}
+\begin{document}
 
-\pagestyle{{plain}}
+\pagestyle{plain}
 
 
 % IF PRINT
-%\includepdf{{empty.pdf}}
-%\includepdf{{empty.pdf}}
+%\includepdf{empty.pdf}
+%\includepdf{empty.pdf}
 
 \maketitle
 
 \cleardoublepage
 
-\thispagestyle{{empty}}
+\thispagestyle{empty}
 \noindent
-Edición automágica, {YEAR}.\\
+Edición automágica, var{YEAR}.\\
 
-\vspace{{0.5cm}}
+\vspace{0.5cm}
 
 \noindent
-\emph{{{TITLE}}} lleva la licencia
-\emph{{Creative Commons Attribution - NonCommercial - ShareAlike 4.0 Iternational}}.
+\emph{var{TITLE}} lleva la licencia
+\emph{Creative Commons Attribution - NonCommercial - ShareAlike 4.0 Iternational}.
 Esto significa que podés compartir esta obra y crear obras derivadas
 mencionando al autor, pero no ha\-cer un uso comercial de ella.
 
@@ -74,21 +74,21 @@ mencionando al autor, pero no ha\-cer un uso comercial de ella.
 
 \noindent
 %Más información sobre este libro:\\
-{URL}\\
+var{URL}\\
 
 \cleardoublepage
 
 %\cleardoublepage
 
-\renewcommand*\contentsname{{{INDEX_TITLE}}}
+\renewcommand*\contentsname{var{INDEX_TITLE}}
 
 \tableofcontents
 
-{CONTENT}
+var{CONTENT}
 
 \cleardoublepage
 
 %IMPRENTA
-%\includepdf{{empty.pdf}}
+%\includepdf{empty.pdf}
 
-\end{{document}}
+\end{document}
