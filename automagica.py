@@ -15,6 +15,9 @@ from pdf.booklet import generate_booklet
 from template import latex_env
 from utils import filepath, latex_chapter, latex_hyphenation
 
+import site; site.addsitedir("/usr/local/lib/python2.7/site-packages")
+from gooey import Gooey, GooeyParser
+
 reload(sys)
 sys.setdefaultencoding('utf8')
 
@@ -30,52 +33,60 @@ DEFAULTS = dict(
     CONTENT=""
 )
 
-parser = argparse.ArgumentParser()
-parser.add_argument('book_path', help="Carpeta con archivos para un libro.", metavar='carpeta')
-parser.add_argument('--split-paragraphs', help="Separar párrafos.", action='store_true')
-parser.add_argument('--pdf', help="Genera la versión pdf del libro.", action='store_true')
-parser.add_argument('--booklet', help="Genera la versión booklet del pdf.", action='store_true')
-parser.add_argument('--epub', help="Genera la versión epub del libro.", action='store_true')
-args = parser.parse_args()
-book_path = args.book_path
 
-if not os.path.isdir(book_path):
-    print("El argumento debe ser un directorio")
-    exit()
-config = imp.load_source('config', os.path.join(book_path, 'config.py'))
+@Gooey(program_name="Automágica", program_description="Generá libros listos para imprimir en base a tus originales", language='spanish')
+def main():
+    #parser = argparse.ArgumentParser()
+    parser = GooeyParser()
+    parser.add_argument('book_path', help="Carpeta con archivos para un libro.", metavar='carpeta', widget='DirChooser')
+    parser.add_argument('--split-paragraphs', help="Separar párrafos.", action='store_true')
+    parser.add_argument('--pdf', help="Genera la versión pdf del libro.", action='store_true')
+    parser.add_argument('--booklet', help="Genera la versión booklet del pdf.", action='store_true')
+    parser.add_argument('--epub', help="Genera la versión epub del libro.", action='store_true')
+    args = parser.parse_args()
+    book_path = args.book_path
 
-VARS = DEFAULTS.copy()
-VARS.update(config.CONFIGS)
+    if not os.path.isdir(book_path):
+        print("El argumento debe ser un directorio")
+        exit()
+    config = imp.load_source('config', os.path.join(book_path, 'config.py'))
 
-index_path = os.path.join(book_path, 'index.txt')
+    VARS = DEFAULTS.copy()
+    VARS.update(config.CONFIGS)
 
-if os.path.isfile(index_path):
-    with open(index_path, 'r') as f:
-        content = ""
-        for filename in f.readlines():
-            content += latex_chapter(os.path.join(book_path, filename).strip(), args.split_paragraphs)
-        VARS['CONTENT'] = content
+    index_path = os.path.join(book_path, 'index.txt')
 
-sep_path = os.path.join(book_path, 'words.txt')
-if os.path.isfile(sep_path):
-    with open(sep_path, 'r') as f:
-        hyphenation = ""
-        for word in f.readlines():
-            hyphenation += latex_hyphenation(word.strip())
-        VARS['HYPHENATION'] = hyphenation
+    if os.path.isfile(index_path):
+        with open(index_path, 'r') as f:
+            content = ""
+            for filename in f.readlines():
+                content += latex_chapter(os.path.join(book_path, filename).strip(), args.split_paragraphs)
+            VARS['CONTENT'] = content
 
-TEMPLATE = 'template.tex'
+    sep_path = os.path.join(book_path, 'words.txt')
+    if os.path.isfile(sep_path):
+        with open(sep_path, 'r') as f:
+            hyphenation = ""
+            for word in f.readlines():
+                hyphenation += latex_hyphenation(word.strip())
+            VARS['HYPHENATION'] = hyphenation
 
-template = latex_env.get_template(TEMPLATE)
+    TEMPLATE = 'template.tex'
 
-tex_file = filepath(book_path, config.BASE_FILENAME, 'tex')
+    template = latex_env.get_template(TEMPLATE)
 
-with open(tex_file, 'w') as f:
-    f.write(template.render(**VARS))
+    tex_file = filepath(book_path, config.BASE_FILENAME, 'tex')
 
-if args.pdf or not args.epub:
-    pdf_file = generate_pdf(book_path, config.BASE_FILENAME, tex_file)
-    if args.booklet:
-        generate_booklet(pdf_file, filepath(book_path, config.BASE_FILENAME, 'booklet.pdf'))
-if args.epub:
-    generate_epub(book_path, config.BASE_FILENAME, tex_file)
+    with open(tex_file, 'w') as f:
+        f.write(template.render(**VARS))
+
+    if args.pdf or not args.epub:
+        pdf_file = generate_pdf(book_path, config.BASE_FILENAME, tex_file)
+        if args.booklet:
+            generate_booklet(pdf_file, filepath(book_path, config.BASE_FILENAME, 'booklet.pdf'))
+    if args.epub:
+        generate_epub(book_path, config.BASE_FILENAME, tex_file)
+
+
+if __name__ == '__main__':
+    main()
