@@ -1,17 +1,19 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+from __future__ import division, print_function, unicode_literals
+
 import argparse
-from datetime import datetime
 import imp
 import os
 import sys
+from datetime import datetime
 
 from epub import generate_epub
 from pdf import generate_pdf
 from pdf.booklet import generate_booklet
-from utils import latex_chapter, filepath, latex_hyphenation, latex_part
-
+from template import latex_env
+from utils import filepath, latex_hyphenation
 
 reload(sys)
 sys.setdefaultencoding('utf8')
@@ -82,13 +84,12 @@ if os.path.isfile(sep_path):
 
 TEMPLATE = 'template.tex'
 
-with open(TEMPLATE, 'r') as f:
-    template = f.read()
+template = latex_env.get_template(TEMPLATE)
 
 tex_file = filepath(book_path, config.BASE_FILENAME, 'tex')
 
 with open(tex_file, 'w') as f:
-    f.write(template.format(**VARS))
+    f.write(template.render(**VARS))
 
 if args.pdf or not args.epub:
     pdf_file = generate_pdf(book_path, config.BASE_FILENAME, tex_file)
