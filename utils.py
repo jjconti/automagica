@@ -24,20 +24,20 @@ def filepath(path, base_name, ext):
 def latex_chapter_title(title, index_title=None):
     if not index_title:
         index_title = title
-    return "\chapter*{{{title}}} \\addcontentsline{{toc}}{{chapter}}{{{index_title}}}".format(
-        title=title, index_title=index_title)
+    return "\n\n\chapter*{{{title}}} \\addcontentsline{{toc}}{{chapter}}{{{index_title}}}".format(
+        title=title.strip(), index_title=index_title.strip())
 
 
 def latex_section_title(title, index_title=None):
-    return "\section*{{{title}}}".format(title=title)
+    return "\n\n\section*{{{title}}}".format(title=title)
 
 
 def latex_subsection_title(title, index_title=None):
-    return "\subsection*{{{title}}}".format(title=title)
+    return "\n\n\subsection*{{{title}}}".format(title=title)
 
 
 def latex_part_title(title, index_title=None):
-    return "\part*{{{title}}}".format(title=title)
+    return "\n\n\part*{{{title}}}".format(title=title)
 
 
 def latex_chapter(path, split_paragraphs=False):
