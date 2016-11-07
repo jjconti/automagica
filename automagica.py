@@ -20,26 +20,26 @@ reload(sys)
 sys.setdefaultencoding('utf8')
 
 DEFAULTS = dict(
-    TITLE="TITLE",
-    AUTHOR="AUTHOR",
+    TITLE='TITLE',
+    AUTHOR='AUTHOR',
     FONT_SIZE=11,
     PAGE_SIZE='a5paper',
     YEAR=datetime.now().year,
     URL='',
     INCLUDE_INDEX=True,
-    INDEX_TITLE="Índice",
-    HYPHENATION="",
-    CONTENT="",
+    INDEX_TITLE='Índice',
+    HYPHENATION='',
+    CONTENT='',
 )
 
 
 parser = argparse.ArgumentParser()
-parser.add_argument('book_path', help="Carpeta con archivos para un libro.", metavar='carpeta')
-parser.add_argument('--no-split', help="No separar párrafos.", action='store_true')
-parser.add_argument('--pdf', help="Genera la versión pdf del libro.", action='store_true')
-parser.add_argument('--booklet', help="Genera la versión booklet del pdf.", action='store_true')
-parser.add_argument('--epub', help="Genera la versión epub del libro.", action='store_true')
-parser.add_argument('--only-tex', help="Solo genera el archivo latex.", action='store_true')
+parser.add_argument('book_path', help='Carpeta con archivos para un libro.', metavar='carpeta')
+parser.add_argument('--no-split', help='No separar párrafos.', action='store_true')
+parser.add_argument('--pdf', help='Genera la versión pdf del libro.', action='store_true')
+parser.add_argument('--booklet', help='Genera la versión booklet del pdf.', action='store_true')
+parser.add_argument('--epub', help='Genera la versión epub del libro.', action='store_true')
+parser.add_argument('--only-tex', help='Solo genera el archivo latex.', action='store_true')
 args = parser.parse_args()
 book_path = args.book_path
 
@@ -48,7 +48,7 @@ class EmptyConfig(object):
     pass
 
 if not os.path.isdir(book_path):
-    print("El argumento debe ser un directorio")
+    print('El argumento debe ser un directorio')
     exit()
 config_file = os.path.join(book_path, 'config.py')
 if os.path.isfile(config_file):
@@ -66,7 +66,7 @@ index_path = os.path.join(book_path, 'index.txt')
 split_paragraphs = not args.no_split
 if os.path.isfile(index_path):
     with open(index_path, 'r') as f:
-        content = ""
+        content = ''
         for filename in f.readlines():
             content += latex_chapter(os.path.join(book_path, filename).strip(), split_paragraphs)
         VARS['CONTENT'] = content
@@ -83,7 +83,7 @@ if VARS['INCLUDE_INDEX']:
 sep_path = os.path.join(book_path, 'words.txt')
 if os.path.isfile(sep_path):
     with open(sep_path, 'r') as f:
-        hyphenation = ""
+        hyphenation = ''
         for word in f.readlines():
             hyphenation += latex_hyphenation(word.strip())
         VARS['HYPHENATION'] = hyphenation

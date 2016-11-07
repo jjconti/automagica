@@ -24,27 +24,27 @@ def filepath(path, base_name, ext):
 def latex_chapter_title(title, index_title=None):
     if not index_title:
         index_title = title
-    return "\n\n\chapter*{{{title}}} \\addcontentsline{{toc}}{{chapter}}{{{index_title}}}".format(
+    return '\n\n\chapter*{{{title}}} \\addcontentsline{{toc}}{{chapter}}{{{index_title}}}'.format(
         title=title.strip(), index_title=index_title.strip())
 
 
 def latex_section_title(title, index_title=None):
-    return "\n\n\section*{{{title}}}".format(title=title)
+    return '\n\n\section*{{{title}}}'.format(title=title)
 
 
 def latex_subsection_title(title, index_title=None):
-    return "\n\n\subsection*{{{title}}}".format(title=title)
+    return '\n\n\subsection*{{{title}}}'.format(title=title)
 
 
 def latex_part_title(title, index_title=None):
-    return "\n\n\part*{{{title}}}".format(title=title)
+    return '\n\n\part*{{{title}}}'.format(title=title)
 
 
 def latex_chapter(path, split_paragraphs=False):
     with open(path, 'r') as f:
         lines = f.readlines()
         lines[0] = latex_chapter_title(lines[0])
-        sep = "\n" if split_paragraphs else " "
+        sep = '\n' if split_paragraphs else ' '
         return sep.join(lines).replace('&', '\&')
 
 
@@ -66,4 +66,4 @@ def latex_single(path, split_paragraphs=False):
 
 
 def latex_hyphenation(word):
-    return "\hyphenation{{{word}}}".format(word=word)
+    return '\hyphenation{{{word}}}'.format(word=word)
