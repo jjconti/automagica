@@ -20,7 +20,6 @@ reload(sys)
 sys.setdefaultencoding('utf8')
 
 DEFAULTS = dict(
-    TITLE='TITLE',
     AUTHOR='AUTHOR',
     FONT_SIZE=11,
     PAGE_SIZE='a5paper',
@@ -40,6 +39,7 @@ parser.add_argument('--pdf', help='Genera la versión pdf del libro.', action='s
 parser.add_argument('--booklet', help='Genera la versión booklet del pdf.', action='store_true')
 parser.add_argument('--epub', help='Genera la versión epub del libro.', action='store_true')
 parser.add_argument('--only-tex', help='Solo genera el archivo latex.', action='store_true')
+parser.add_argument('TITLE', default='TITLE')
 args = parser.parse_args()
 book_path = args.book_path
 
