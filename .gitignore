@@ -1,14 +1,9 @@
 ### Ejemplos de libros Automágica
-ejemplo/jungla.booklet.pdf
-ejemplo/jungla.epub
-ejemplo/jungla.html
-ejemplo/jungla.pdf
-ejemplo/jungla.tex
-ejemplo_2/sueltos.booklet.pdf
-ejemplo_2/sueltos.epub
-ejemplo_2/sueltos.html
-ejemplo_2/sueltos.pdf
-ejemplo_2/sueltos.tex
+ejemplo*/*.booklet.pdf
+ejemplo*/*.epub
+ejemplo*/*.html
+ejemplo*/*.pdf
+ejemplo*/*.tex
 ### PyCharm ###
 .idea/*
 

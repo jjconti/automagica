@@ -48,35 +48,21 @@ def latex_chapter(path, split_paragraphs=False):
         return sep.join(lines).replace('&', '\&')
 
 
-def is_title(i, lines, subtitle=False):
-    l = len(lines[i])
-    single = i and lines[i] and not lines[i-1] and not lines[i+1]
-    if single:
-        if subtitle:
-            return l <= 3
-        else:
-            return 3 < l < 50
+def is_title(i, lines):
+    return i and lines[i] and not lines[i-1] and not lines[i+1] and len(lines[i]) < 50
 
 
-def is_space(i, lines):
-    return i and not lines[i] #and lines[i-1] and not is_title(i-1, lines) and lines[i+1] and not is_title(i+1, lines)
-
-
-def latex_part(path, split_paragraphs=False):
+def latex_single(path, split_paragraphs=False):
     with open(path, 'r') as f:
-        lines = [''] + [l.strip() for l in f.readlines()]
-        #lines[0] = latex_part_title(lines[0])
+        lines = [''] + [l.strip() for l in f.readlines()] + ['']
         for (i, line) in enumerate(lines):
             if is_title(i, lines):
-                #lines[i] = latex_section_title(lines[i])
                 lines[i] = latex_chapter_title(lines[i])
-            elif is_title(i, lines, subtitle=True):
-                #lines[i] = latex_subsection_title(lines[i])
-                lines[i] = latex_chapter_title(lines[i])
-            elif is_space(i, lines):
-                lines[i] = '\\bigbreak'
         sep = '\n\n' if split_paragraphs else ' '
         return sep.join(lines).replace('&', '\&')
+
+
+#TODO: replace 3 \n with '\\bigbreak'
 
 
 def latex_hyphenation(word):

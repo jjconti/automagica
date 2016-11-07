@@ -5,6 +5,7 @@ from __future__ import division, print_function, unicode_literals
 
 import argparse
 import imp
+import glob
 import os
 import sys
 from datetime import datetime
@@ -13,7 +14,7 @@ from epub import generate_epub
 from pdf import generate_pdf
 from pdf.booklet import generate_booklet
 from template import latex_env
-from utils import filepath, latex_hyphenation, latex_chapter
+from utils import filepath, latex_hyphenation, latex_chapter, latex_single
 
 reload(sys)
 sys.setdefaultencoding('utf8')
@@ -62,12 +63,17 @@ VARS.update(config.CONFIGS)
 
 index_path = os.path.join(book_path, 'index.txt')
 
+split_paragraphs = not args.no_split
 if os.path.isfile(index_path):
     with open(index_path, 'r') as f:
         content = ""
         for filename in f.readlines():
-            content += latex_chapter(os.path.join(book_path, filename).strip(), not args.no_split)
+            content += latex_chapter(os.path.join(book_path, filename).strip(), split_paragraphs)
         VARS['CONTENT'] = content
+else:
+    text_files = [f for f in glob.glob(os.path.join(book_path, '*.txt')) if not f.endswith('words.txt')]
+    if text_files:
+        VARS['CONTENT'] = latex_single(text_files[0], split_paragraphs)
 
 if VARS['INCLUDE_INDEX']:
     VARS['INDEX'] = '\\renewcommand*\\contentsname{{{INDEX_TITLE}}}'.format(**VARS)
