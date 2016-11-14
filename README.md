@@ -1,6 +1,6 @@
 # automagica
 
-Permite crear en forma fácil libros listos para la imprenta o para distribuir digitalmente.
+Automágica permite maquetear en forma automática libros listos para imprimir en una imprenta o para distrubuir digitalmente.
 
 Funciona en Linux, OS X y Windows.
 
