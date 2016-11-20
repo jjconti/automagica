@@ -6,7 +6,7 @@
 \usepackage[Lenny]{fncychap}
 
 \usepackage[spanish]{babel}
-\usepackage[utf8]{inputenc}
+\usepackage[utf8x]{inputenc}
 \usepackage[T1]{fontenc}
 
 \usepackage{mathptmx}
@@ -47,6 +47,8 @@
 
 \begin{document}
 
+\pagenumbering{gobble}
+
 \pagestyle{plain}
 
 
@@ -82,6 +84,11 @@ mencionando al autor, pero no ha\-cer un uso comercial de ella.
 \renewcommand*\contentsname{Índice}
 
 \tableofcontents
+
+
+\cleardoublepage
+
+\pagenumbering{arabic}
 
 
 
@@ -296,4 +303,13 @@ Los compañeros abandonaron el aula con un sabor agrio en la boca. ¿Cómo podí
 %IMPRENTA
 %\includepdf{empty.pdf}
 
+\hspace{0pt}
+\vfill
+\begin{center}
+Maqueteado automáticamente utilizando \emph{Automágica}.
+\bigbreak
+http://www.juanjoconti.com/automagica/
+\end{center}
+\vfill
+\hspace{0pt}
 \end{document}
