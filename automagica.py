@@ -38,6 +38,7 @@ parser.add_argument('--pdf', help='Genera la versión pdf del libro.', action='s
 parser.add_argument('--booklet', help='Genera la versión booklet del pdf.', action='store_true')
 parser.add_argument('--epub', help='Genera la versión epub del libro.', action='store_true')
 parser.add_argument('--only-tex', help='Solo genera el archivo latex.', action='store_true')
+parser.add_argument('--sections', help='Usar secciones en lugar de capítulos como elemento principal.', action='store_true')
 parser.add_argument('--TITLE', default='TITLE')
 parser.add_argument('--AUTHOR', default='AUTHOR')
 parser.add_argument('--FONT_SIZE', default=11)
@@ -67,17 +68,20 @@ for k,v in args._get_kwargs():
 
 index_path = os.path.join(book_path, 'index.txt')
 
-split_paragraphs = not args.no_split
+split_paragraphs = not VARS['no_split']
 if os.path.isfile(index_path):
     with open(index_path, 'r') as f:
         content = ''
         for filename in f.readlines():
-            content += latex_chapter(os.path.join(book_path, filename).strip(), split_paragraphs)
+            if VARS['no_split']:
+                content += latex_chapter(os.path.join(book_path, filename).strip(), split_paragraphs)
+            else:
+                content += latex_single(os.path.join(book_path, filename).strip(), split_paragraphs, VARS['sections'])
         VARS['CONTENT'] = content
 else:
     text_files = [f for f in glob.glob(os.path.join(book_path, '*.txt')) if not f.endswith('words.txt')]
     if text_files:
-        VARS['CONTENT'] = latex_single(text_files[0], split_paragraphs)
+        VARS['CONTENT'] = latex_single(text_files[0], split_paragraphs, VARS['sections'])
 
 # TODO: use IF in template
 if VARS['INCLUDE_INDEX']:

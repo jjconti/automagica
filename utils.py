@@ -29,7 +29,10 @@ def latex_chapter_title(title, index_title=None):
 
 
 def latex_section_title(title, index_title=None):
-    return '\n\n\section*{{{title}}}'.format(title=title)
+    if not index_title:
+        index_title = title
+    return '\n\n\\newpage\n\n\section*{{{title}}} \\addcontentsline{{toc}}{{section}}{{{index_title}}}'.format(
+        title=title.strip(), index_title=index_title.strip())
 
 
 def latex_subsection_title(title, index_title=None):
@@ -49,20 +52,20 @@ def latex_chapter(path, split_paragraphs=False):
 
 
 def is_title(i, lines):
-    return i and lines[i] and not lines[i-1] and not lines[i+1] and len(lines[i]) < 50
+    return i and lines[i] and not lines[i-1] and not lines[i+1] and len(lines[i]) < 60
 
 
-def latex_single(path, split_paragraphs=False):
+def latex_single(path, split_paragraphs=False, use_sections=False):
     with open(path, 'r') as f:
         lines = [''] + [l.strip() for l in f.readlines()] + ['']
         for (i, line) in enumerate(lines):
             if is_title(i, lines):
-                lines[i] = latex_chapter_title(lines[i])
+                if use_sections:
+                    lines[i] = latex_section_title(lines[i])
+                else:
+                    lines[i] = latex_chapter_title(lines[i])
         sep = '\n\n' if split_paragraphs else ' '
         return sep.join(lines).replace('&', '\&')
-
-
-#TODO: replace 3 \n with '\\bigbreak'
 
 
 def latex_hyphenation(word):
