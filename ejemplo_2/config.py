@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-
 
 
-BASE_FILENAME = 'sueltos'
-
 CONFIGS = dict(
+    BASE_FILENAME='sueltos',
     TITLE="Capítulos sueltos",
     AUTHOR="Juan José Conti",
     FONT_SIZE=12,
