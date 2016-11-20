@@ -13,6 +13,7 @@ import subprocess
 
 
 def run_and_assert(cmd):
+    print("Running: {}".format(cmd))
     proc = subprocess.Popen(cmd)
     proc.communicate()
     retcode = proc.returncode
