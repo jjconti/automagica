@@ -1,16 +1,17 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+import glob
+import shutil
+import os
+import subprocess
+
+
 TESTS_DIR = 'tests_data'
 EXAMPLES = {'ejemplo': [[]],
             'ejemplo_no_config': [[]],
             'ejemplo_2': [[]],
             'ejemplo_single': [[], ['--exclude-index', '--BASE_FILENAME=index_excluded']]}
-
-import glob
-import shutil
-import os
-import subprocess
 
 
 def run_and_assert(cmd):
@@ -47,7 +48,6 @@ def run_tests():
     run_and_assert(cmd)
     cmd = ['diff', 'tests_data/ejemplo_single/index_excluded.tex', 'tests_data/index_excluded.tex']
     run_and_assert(cmd)
-    clean()
 
 
 if __name__ == '__main__':
@@ -55,4 +55,8 @@ if __name__ == '__main__':
         run_tests()
     except Exception as e:
         print e
+        exit(1)
+    else:
+        exit(0)
+    finally:
         clean()
