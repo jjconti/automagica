@@ -6,7 +6,7 @@
 \usepackage[Lenny]{fncychap}
 
 \usepackage[spanish]{babel}
-\usepackage[utf8]{inputenc}
+\usepackage[utf8x]{inputenc}
 \usepackage[T1]{fontenc}
 
 \usepackage{mathptmx}
@@ -35,8 +35,8 @@
     \vskip 10pt}
 
 
-\title{var{TITLE}}
-\author{var{AUTHOR}}
+\title{var{TITLE}block{ if SUBTITLE }\bigbreak\large var{SUBTITLE}block{ endif }}
+\author{block{ if SUBTITLE }\bigbreak block{ endif }var{AUTHOR}}
 \date{}
 
 var{HYPHENATION}
@@ -46,6 +46,8 @@ var{HYPHENATION}
 \clubpenalty=10000
 
 \begin{document}
+
+\pagenumbering{gobble}
 
 \pagestyle{plain}
 
@@ -78,11 +80,17 @@ var{URL}\\
 
 \cleardoublepage
 
-%\cleardoublepage
 
+block{ if not exclude_index }
 \renewcommand*\contentsname{var{INDEX_TITLE}}
 
 \tableofcontents
+
+
+\cleardoublepage
+block{ endif }
+
+\pagenumbering{arabic}
 
 var{CONTENT}
 
@@ -91,4 +99,13 @@ var{CONTENT}
 %IMPRENTA
 %\includepdf{empty.pdf}
 
+\hspace{0pt}
+\vfill
+\begin{center}
+Maqueteado automáticamente utilizando \emph{Automágica}.
+\bigbreak
+http://www.juanjoconti.com/automagica/
+\end{center}
+\vfill
+\hspace{0pt}
 \end{document}
