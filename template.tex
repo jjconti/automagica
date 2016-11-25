@@ -81,12 +81,14 @@ var{URL}\\
 \cleardoublepage
 
 
+block{ if not exclude_index }
 \renewcommand*\contentsname{var{INDEX_TITLE}}
 
 \tableofcontents
 
 
 \cleardoublepage
+block{ endif }
 
 \pagenumbering{arabic}
 
