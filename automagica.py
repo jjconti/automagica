@@ -29,12 +29,14 @@ DEFAULTS = dict(
 )
 
 
-@Gooey(program_name="Automágica", program_description="Generá libros listos para imprimir en base a tus originales", language='spanish')
+@Gooey(program_name="Automágica", program_description="Generá libros listos para imprimir en base a tus originales",
+       language='spanish', image_dir='images',  default_size=(810, 870))
 def main():
     #parser = argparse.ArgumentParser()
     parser = GooeyParser()
     parser.add_argument('--BASE_FILENAME', default='default')
     parser.add_argument('book_path', help='Carpeta con archivos para un libro.', metavar='carpeta')
+    #parser.add_argument('book_path', help='Carpeta con archivos para un libro.', metavar='carpeta', widget='DirChooser')
     parser.add_argument('--no-split', help='No separar párrafos.', action='store_true')
     parser.add_argument('--pdf', help='Genera la versión pdf del libro.', action='store_true')
     parser.add_argument('--booklet', help='Genera la versión booklet del pdf.', action='store_true')
