@@ -117,5 +117,6 @@ def main():
         if args.epub:
             generate_epub(book_path, base_filename, tex_file)
 
+
 if __name__ == '__main__':
     main()
