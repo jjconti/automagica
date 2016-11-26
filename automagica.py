@@ -3,6 +3,8 @@
 
 from __future__ import division, print_function, unicode_literals
 
+import site; site.addsitedir("/usr/local/lib/python2.7/site-packages")
+
 import argparse
 import imp
 import glob
