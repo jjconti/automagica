@@ -7,7 +7,7 @@ import subprocess
 
 from utils import filepath, show_file
 
-
+test = 1
 def generate_epub(book_path, base_filename, tex_file):
     epub_file = filepath(book_path, base_filename, 'epub')
     cmd = ['pandoc', '--from=latex', '-o', epub_file, tex_file]
