@@ -40,6 +40,12 @@ Funciona en Linux, OS X y Windows.
 # Uso
 
 `python automagica.py ejemplo` genera la versión en pdf del libro en la caprpeta ejemplo.
-
-
 `python automagica.py --pdf --booklet --epub ejemplo` genera la versión en pdf, pdf booklet y epub del libro en la caprpeta ejemplo.
+
+# GUI
+
+Para usar la interfaz gráfica:
+
+`git checkout gui`
+
+`./wxpython automagica.py`
