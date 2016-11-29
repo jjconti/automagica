@@ -1,5 +1,7 @@
 # automagica
 
+[![Code Health](https://landscape.io/github/jjconti/automagica/master/landscape.svg?style=flat)](https://landscape.io/github/jjconti/automagica/master)
+
 Automágica permite maquetear en forma automática libros listos para imprimir en una imprenta o para distrubuir digitalmente.
 
 Funciona en Linux, OS X y Windows.
@@ -40,4 +42,4 @@ Funciona en Linux, OS X y Windows.
 `python automagica.py ejemplo` genera la versión en pdf del libro en la caprpeta ejemplo.
 
 
-`python automagica.py --pdf --bookle --epub ejemplo` genera la versión en pdf, pdf booklet y epub del libro en la caprpeta ejemplo.
+`python automagica.py --pdf --booklet --epub ejemplo` genera la versión en pdf, pdf booklet y epub del libro en la caprpeta ejemplo.
