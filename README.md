@@ -1,6 +1,6 @@
 # automagica
 
-[![Code Health](https://landscape.io/github/jjconti/automagica/master/landscape.svg?style=flat)](https://landscape.io/github/jjconti/automagica/master)
+[![Build Status](https://travis-ci.org/jjconti/automagica.svg?branch=master)](https://travis-ci.org/jjconti/automagica) [![Code Health](https://landscape.io/github/jjconti/automagica/master/landscape.svg?style=flat)](https://landscape.io/github/jjconti/automagica/master)
 
 Automágica permite maquetear en forma automática libros listos para imprimir en una imprenta o para distrubuir digitalmente.
 
