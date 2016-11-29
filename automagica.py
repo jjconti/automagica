@@ -30,28 +30,27 @@ DEFAULTS = dict(
 
 
 @Gooey(program_name="Automágica", program_description="Generá libros listos para imprimir en base a tus originales",
-       language='spanish', image_dir='images',  default_size=(810, 870))
+       language='spanish', image_dir='images',  default_size=(810, 570))
 def main():
-    #parser = argparse.ArgumentParser()
     parser = GooeyParser()
-    parser.add_argument('--BASE_FILENAME', default='default')
-    parser.add_argument('book_path', help='Carpeta con archivos para un libro.', metavar='carpeta')
-    #parser.add_argument('book_path', help='Carpeta con archivos para un libro.', metavar='carpeta', widget='DirChooser')
-    parser.add_argument('--no-split', help='No separar párrafos.', action='store_true')
+    parser.add_argument('--BASE_FILENAME', default='libro', metavar="Nombre base de los archivos generados")
+    parser.add_argument('book_path', help='Carpeta con archivos para un libro y dónde se genera la salida.',
+                        metavar='Carpeta', widget='DirChooser')
+    parser.add_argument('--no-split', help='No separar párrafos.', action='store_true',)
     parser.add_argument('--pdf', help='Genera la versión pdf del libro.', action='store_true')
     parser.add_argument('--booklet', help='Genera la versión booklet del pdf.', action='store_true')
     parser.add_argument('--epub', help='Genera la versión epub del libro.', action='store_true')
     parser.add_argument('--only-tex', help='Solo genera el archivo latex.', action='store_true')
     parser.add_argument('--sections', help='Usar secciones en lugar de capítulos como elemento principal.', action='store_true')
     parser.add_argument('--new-page-before-sections', help='Forzar página nueva en las secciones principales.', action='store_true')
-    parser.add_argument('--TITLE', default='TITLE')
-    parser.add_argument('--SUBTITLE', default='')
-    parser.add_argument('--AUTHOR', default='AUTHOR')
-    parser.add_argument('--FONT_SIZE', default=11)
-    parser.add_argument('--PAGE_SIZE', default='a5paper')
-    parser.add_argument('--YEAR', default=datetime.now().year)
-    parser.add_argument('--URL', default='')
-    parser.add_argument('--exclude-index', action='store_true')
+    parser.add_argument('--TITLE', default='TÍTULO', metavar="Título")
+    parser.add_argument('--SUBTITLE', default='', metavar="Subtítulo")
+    parser.add_argument('--AUTHOR', default='AUTOR', metavar="Autor")
+    parser.add_argument('--FONT_SIZE', default=11, metavar="Tamaño de la fuente")
+    parser.add_argument('--PAGE_SIZE', default='a5paper', metavar="Tamaño de la página")
+    parser.add_argument('--YEAR', default=datetime.now().year, metavar="Año")
+    parser.add_argument('--URL', default='', metavar="Página web")
+    parser.add_argument('--exclude-index', action='store_true', help="No incluir índice.")
     args = parser.parse_args()
     book_path = args.book_path
 
