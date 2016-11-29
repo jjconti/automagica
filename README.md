@@ -6,7 +6,7 @@ Automágica permite maquetear en forma automática libros listos para imprimir e
 
 Funciona en Linux, OS X y Windows.
 
-[![Estado actual de Automágica](https://img.youtube.com/vi/BtyG786BUmo/0.jpg)](https://www.youtube.com/watch?v=BtyG786BUmo)
+[![Estado actual de Automágica](https://i.ytimg.com/vi/oPpIC9GOrEc/hqdefault.jpg)](https://www.youtube.com/watch?v=oPpIC9GOrEc)
 
 # Instalación
 
