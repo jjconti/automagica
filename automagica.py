@@ -50,7 +50,6 @@ def main():
     args = parser.parse_args()
     book_path = args.book_path
 
-
     class EmptyConfig(object):
         pass
 
@@ -69,7 +68,6 @@ def main():
     for k,v in args._get_kwargs():
         if not VARS.get(k):
             VARS[k] = v
-
 
     index_path = os.path.join(book_path, 'index.txt')
 
