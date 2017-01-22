@@ -1,10 +1,12 @@
 # automagica
 
+[![Build Status](https://travis-ci.org/jjconti/automagica.svg?branch=master)](https://travis-ci.org/jjconti/automagica) [![Code Health](https://landscape.io/github/jjconti/automagica/master/landscape.svg?style=flat)](https://landscape.io/github/jjconti/automagica/master) [![Coverage Status](https://coveralls.io/repos/github/jjconti/automagica/badge.svg?branch=master)](https://coveralls.io/github/jjconti/automagica?branch=master)
+
 Automágica permite maquetear en forma automática libros listos para imprimir en una imprenta o para distrubuir digitalmente.
 
 Funciona en Linux, OS X y Windows.
 
-[![Estado actual de Automágica](https://img.youtube.com/vi/BtyG786BUmo/0.jpg)](https://www.youtube.com/watch?v=BtyG786BUmo)
+[![Estado actual de Automágica](https://i.ytimg.com/vi/oPpIC9GOrEc/hqdefault.jpg)](https://www.youtube.com/watch?v=oPpIC9GOrEc)
 
 # Instalación
 
@@ -38,6 +40,12 @@ Funciona en Linux, OS X y Windows.
 # Uso
 
 `python automagica.py ejemplo` genera la versión en pdf del libro en la caprpeta ejemplo.
+`python automagica.py --pdf --booklet --epub ejemplo` genera la versión en pdf, pdf booklet y epub del libro en la caprpeta ejemplo.
 
+# GUI
 
-`python automagica.py --pdf --bookle --epub ejemplo` genera la versión en pdf, pdf booklet y epub del libro en la caprpeta ejemplo.
+Para usar la interfaz gráfica:
+
+`git checkout gui`
+
+`./wxpython automagica.py`

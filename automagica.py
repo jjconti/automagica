@@ -3,6 +3,8 @@
 
 from __future__ import division, print_function, unicode_literals
 
+import site; site.addsitedir("/usr/local/lib/python2.7/site-packages")
+
 import argparse
 import imp
 import glob
@@ -54,7 +56,6 @@ def main():
     args = parser.parse_args()
     book_path = args.book_path
 
-
     class EmptyConfig(object):
         pass
 
@@ -73,7 +74,6 @@ def main():
     for k,v in args._get_kwargs():
         if not VARS.get(k):
             VARS[k] = v
-
 
     index_path = os.path.join(book_path, 'index.txt')
 
