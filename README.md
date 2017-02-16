@@ -20,7 +20,7 @@ Funciona en Linux, OS X y Windows.
 ## En Linux
 
 * apt-get install pandoc, texlive-full
-* pip install pdfwr
+* pip install pdfrw
 
 ## En Windows
 
