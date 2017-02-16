@@ -1,0 +1,74 @@
+\documentclass[12pt,spinewidth=var{SPINE_WIDTH},coverwidth=var{COVER_WIDTH},coverheight=var{COVER_HEIGHT},flapwidth=0cm]{bookcover}
+
+\usepackage[spanish]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+
+\newbookcovercomponenttype{center rotate}{
+    \parbox[t][\partheight][c]{\partwidth}{
+        \begin{center}
+             \rotatebox[origin=c]{90}{#1}
+        \end{center}}}
+\usepackage{contour,lipsum}
+\contourlength{1pt}
+\definecolor{lightbrown}{RGB}{176,88,0}
+var{DEFINED_COLORS}
+%\colorlet{title}{yellow!60!black}
+\colorlet{title}{var{TITLE_COLOR}}
+\begin{document}
+
+\begin{bookcover}
+
+% Black background color on the whole cover
+\bookcovercomponent{color}{bg whole}{color=var{COVER_COLOR}}
+
+% Brown background picture on the whole cover, without the flaps
+%\bookcovercomponent{picture}{bg whole without flaps}{./figures/bg.jpg}
+
+% Vertical light brown transparent trails on the back cover by a tikz code
+%\bookcovercomponent{tikz}{bg back}{
+%    \fill[opacity=0.3,color=lightbrown] 
+%     (0mm,0mm) rectangle (20mm,210mm) (100mm,0mm) rectangle (150mm,210mm);}
+
+% Vertical light brown transparent trails on the front cover by a tikz code
+%\bookcovercomponent{tikz}{bg front}{
+%  \fill[opacity=0.3,color=lightbrown] 
+%    (0mm,0mm) rectangle (50mm,210mm) (130mm,0mm) rectangle (150mm,210mm);}
+
+% Remark 
+\bookcovercomponent{center}{above front}{
+    \color{blue}Tapa}
+
+% Picture (cards.png) on the front, behind the title
+\bookcovercomponent{normal}{front}{
+    \vspace{var{IMAGE_VSPACE}}
+    \centering
+    \includegraphics[width=var{IMAGE_WIDTH}]{var{IMAGE_PATH}}}
+
+% Text on the front cover
+\bookcovercomponent{normal}{front}{
+    \centering
+    \vspace{var{AUTHOR_VSPACE}}
+    \color{title}\Large\sffamily\bfseries
+    var{AUTHOR}
+    \par
+    \vspace{var{TITLE_VSPACE}}
+    \color{title}\Huge\sffamily\bfseries 
+    var{TITLE}}
+
+% Text on the spine
+\bookcovercomponent{center rotate}{spine}{
+        \color{title}\large\sffamily\bfseries 
+        var{TITLE} \hspace{var{SPINE_INTERTEXT_SPACE}} var{AUTHOR}}
+
+% Text on the back cover
+\bookcovercomponent{normal}{back}{
+    \centering
+    \vspace{var{BACK_VSPACE}}
+    \parbox{100mm}{\color{var{BACK_TEXT_COLOR}}var{BACK_TEXT}}
+    \vfill
+    \parbox{100mm}{\color{var{BACK_TEXT_COLOR}}http://www.juanjoconti.com/automagica/}}
+
+\end{bookcover}
+
+\end{document} 

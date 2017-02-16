@@ -1,0 +1,82 @@
+\documentclass[12pt,spinewidth=25mm,coverwidth=15cm,coverheight=20cm,flapwidth=6cm]{bookcover}
+\newbookcovercomponenttype{center rotate}{
+    \parbox[t][\partheight][c]{\partwidth}{
+        \begin{center}
+             \rotatebox[origin=c]{90}{#1}
+        \end{center}}}
+\usepackage{contour,lipsum}
+\contourlength{1pt}
+\definecolor{lightbrown}{RGB}{176,88,0}
+\colorlet{title}{yellow!60!black}
+\begin{document}
+
+\begin{bookcover}
+
+% Black background color on the whole cover
+\bookcovercomponent{color}{bg whole}{color=black}
+
+% Brown background picture on the whole cover, without the flaps
+\bookcovercomponent{picture}{bg whole without flaps}{./figures/bg.jpg}
+
+% Vertical light brown transparent trails on the back cover by a tikz code
+\bookcovercomponent{tikz}{bg back}{
+    \fill[opacity=0.3,color=lightbrown] 
+    (0mm,0mm) rectangle (20mm,210mm) (100mm,0mm) rectangle (150mm,210mm);}
+
+% Vertical light brown transparent trails on the front cover by a tikz code
+\bookcovercomponent{tikz}{bg front}{
+    \fill[opacity=0.3,color=lightbrown] 
+    (0mm,0mm) rectangle (50mm,210mm) (130mm,0mm) rectangle (150mm,210mm);}
+
+% Remark 
+\bookcovercomponent{center}{above front}{
+    \color{blue}A DUST JACKET}
+
+% Picture (cards.png) on the front, behind the title
+\bookcovercomponent{normal}{front}{
+    \vspace{70mm}
+    \centering
+    \includegraphics[width=8cm]{./figures/cards.png}}  
+
+% Text on the front cover
+\bookcovercomponent{normal}{front}{
+    \centering
+    \vspace{60mm}
+    \color{title}\sffamily\bfseries
+    \resizebox*{50mm}{8mm}{\contour[120]{black}{Rose Taylor}}
+    \par\vspace{20mm}
+    \resizebox*{90mm}{40mm}{\parbox{35mm}{
+        \centering
+        \contour[120]{black}{PROBABILITY}\\
+        \contour[120]{black}{THEORY}\\}}}
+
+% Text on the spine
+\bookcovercomponent{center rotate}{spine}{
+    \contour[120]{black}{
+        \color{title}\huge\sffamily\bfseries 
+        Rose Taylor -- Probability Theory}}
+
+% Text on the back cover
+\bookcovercomponent{normal}{back}{
+    \centering
+    \vspace{20mm}
+    \parbox{110mm}{\color{white}\lipsum[1]}}
+
+% Text and picture (dice.png) on the front flap
+\bookcovercomponent{normal}{front flap}{
+    \centering
+    \vspace{20mm}
+    \parbox{40mm}{\color{white}\lipsum[2]}
+    \vfill
+    \includegraphics[width=30mm]{./figures/dice.png}
+    \vspace{10mm}}
+
+% Text on the back flap
+\bookcovercomponent{normal}{back flap}{
+    \centering
+    \vspace{20mm}
+    \parbox{40mm}{\color{white}\lipsum[2]}}
+
+\end{bookcover}
+
+\end{document} 
