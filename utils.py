@@ -53,7 +53,7 @@ def latex_chapter(path, split_paragraphs=False):
 
 
 def is_title(i, lines):
-    return i and lines[i] and not lines[i-1] and not lines[i+1] and len(lines[i]) < 60
+    return i and lines[i] and not lines[i-1] and not lines[i+1] and len(lines[i]) < 60 and "\\" not in lines[i]
 
 
 def latex_single(path, split_paragraphs=False, use_sections=False, new_page_before_sections=False):
