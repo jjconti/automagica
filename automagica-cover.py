@@ -35,7 +35,7 @@ def main():
     parser.add_argument('book_path', help='Carpeta dónde se genera la salida.', metavar='Carpeta', widget='DirChooser'
 
 
-                        ,default='/Users/juanjo/automagica/xolopes')
+                        ,default='/Users/juanjo/automagica/trabajos/realidad/')
     parser.add_argument('--TITLE', default='TÍTULO', metavar="Título")
     parser.add_argument('--AUTHOR', default='AUTOR', metavar="Autor")
     parser.add_argument('--COVER_WIDTH', default='12cm', help="Ancho del lomo. Ej: 12cm.")
@@ -53,12 +53,18 @@ def main():
     parser.add_argument('--IMAGE_PATH', help='Imagen de tapa.', metavar='Imagen', widget='FileChooser'
 
                         ,default='/Users/juanjo/automagica/cover/figures/tigrebyn.png')
+    parser.add_argument('--LOGO_WIDTH', default='4cm', help="Ancho del logo de la editorial. Ej: 4cm.",
+                        metavar='Ancho del logo')
+    parser.add_argument('--LOGO_PATH', help='Logo de la editorial.', metavar='Logo', widget='FileChooser'
+                        ,default='/Users/juanjo/automagica/cover/figures/automagica.eps')
+    parser.add_argument('--SPINE_LOGO_PATH', help='Logo de la editorial para el lomo.', metavar='Logo en lomo', widget='FileChooser'
+                        ,default='/Users/juanjo/automagica/cover/figures/logo.png')
     parser.add_argument('--IMAGE_VSPACE', default='90mm', help="Espacio vertical antes de la imagen de tapa. Ej: 90mm.",
                         metavar='Espacio vertical imagen')
     parser.add_argument('--BACK_TEXT', help='Texto de la contratapa.', metavar='Contratapa',
                         widget='FileChooser'
 
-                        ,default='/Users/juanjo/automagica/xolopes/contratapa.txt')
+                        ,default='/Users/juanjo/automagica/trabajos/realidad/contratapa.txt')
     parser.add_argument('--BACK_TEXT_COLOR', default='black', help='Color del texto de la contratapa.')
     parser.add_argument('--BACK_VSPACE', default='20mm', help="Espacio vertical antes del texto de contratapa. Ej: 20mm.",
                         metavar='Espacio vertical contratapa')
@@ -73,11 +79,12 @@ def main():
         VARS['BACK_TEXT'] = ''
     new_colors = []
     for k, v in args._get_kwargs():
-        if not VARS.get(k)  :
-            if v.startswith('{gray}') or v.startswith('{rgb}') or v.startswith('{RGB}')or v.startswith('{HTML}') or v.startswith('{cmyk}'):
-                VARS[k] = add_color(v, new_colors)
-            else:
-                VARS[k] = v
+        if not VARS.get(k):
+            VARS[k] = v
+            if v:
+                if v.startswith('{gray}') or v.startswith('{rgb}') or v.startswith('{RGB}')or v.startswith('{HTML}') or v.startswith('{cmyk}'):
+                    VARS[k] = add_color(v, new_colors)
+
 
     VARS['DEFINED_COLORS'] = '\n'.join(new_colors)
 
@@ -86,6 +93,7 @@ def main():
     template = latex_env.get_template(TEMPLATE)
 
     base_filename = VARS['BASE_FILENAME']
+    VARS['DESCRIPTION'] = VARS['BASE_FILENAME'].title()
     tex_file = filepath(book_path, base_filename, 'tex')
 
     with open(tex_file, 'w') as f:
