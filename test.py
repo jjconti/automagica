@@ -15,10 +15,10 @@ class BuildTest(TestCase):
 
     TESTS_DIR = 'tests_data'
     EXAMPLES = {
-        'ejemplo': [[]],
-        'ejemplo_no_config': [[]],
-        'ejemplo_2': [[]],
-        'ejemplo_single': [[], ['--exclude-index', '--BASE_FILENAME=index_excluded']]
+        'ejemplo': [['--YEAR=2016']],
+        'ejemplo_no_config': [['--YEAR=2016']],
+        'ejemplo_2': [['--YEAR=2016']],
+        'ejemplo_single': [['--YEAR=2016'], ['--YEAR=2016', '--exclude-index', '--BASE_FILENAME=index_excluded']]
     }
 
     @classmethod

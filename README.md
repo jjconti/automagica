@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/jjconti/automagica.svg?branch=master)](https://travis-ci.org/jjconti/automagica) [![Code Health](https://landscape.io/github/jjconti/automagica/master/landscape.svg?style=flat)](https://landscape.io/github/jjconti/automagica/master) [![Coverage Status](https://coveralls.io/repos/github/jjconti/automagica/badge.svg?branch=master)](https://coveralls.io/github/jjconti/automagica?branch=master)
 
-Automágica permite maquetear en forma automática libros listos para imprimir en una imprenta o para distrubuir digitalmente.
+Automágica permite maquetar tu texto en forma automática de manera de obtener libros listos para imprimir en una imprenta o para distrubuir digitalmente.
 
 Funciona en Linux, OS X y Windows.
 
@@ -19,8 +19,8 @@ Funciona en Linux, OS X y Windows.
 
 ## En Linux
 
-* apt-get install pandoc, texlive-full
-* pip install pdfwr
+* sudo apt-get install pandoc, texlive-full
+* pip install pdfrw
 
 ## En Windows
 
