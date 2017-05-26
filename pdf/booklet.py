@@ -29,11 +29,11 @@ def generate_booklet(input_file, output_file):
     ipages = PdfReader(input_file).pages
 
     # Make sure we have 4*n pages
-    while len(ipages) & 4:
+    while len(ipages) % 4:
         ipages.append(None)
 
     opages = []
-    while len(ipages) > 2:
+    while len(ipages):
         opages.append(fixpage(ipages.pop(), ipages.pop(0)))
         opages.append(fixpage(ipages.pop(0), ipages.pop()))
 
