@@ -95,8 +95,11 @@ def main():
             VARS['HYPHENATION'] = hyphenation
 
     TEMPLATE = 'template.tex'
-
-    template = latex_env.get_template(TEMPLATE)
+    local_template_path = os.path.join(book_path, 'template.tex')
+    if os.path.isfile(local_template_path):
+        template = latex_env.from_string(open(local_template_path).read())
+    else:
+        template = latex_env.get_template(TEMPLATE)
 
     base_filename = VARS['BASE_FILENAME']
     tex_file = filepath(book_path, base_filename, 'tex')
