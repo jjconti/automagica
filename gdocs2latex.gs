@@ -159,6 +159,10 @@ function processTextElement(txt) {
       pOut = pOut.substring(0, off) + d1 + pOut.substring(off, lastOff) + d2 + pOut.substring(lastOff);
     } else if (txt.isItalic(off)) {
       pOut = pOut.substring(0, off) + '\\textit{' + pOut.substring(off, lastOff) + '}' + pOut.substring(lastOff);
+    } else if (txt.getFontFamily(off) == "Courier New") {
+      pOut = pOut.substring(0, off) + '\\small{\\texttt{' + pOut.substring(off, lastOff) + '}}' + pOut.substring(lastOff);
+    } else if (txt.isStrikethrough(off)) {
+      pOut = pOut.substring(0, off) + '\\st{' + pOut.substring(off, lastOff) + '}' + pOut.substring(lastOff);
     }
     lastOff=off;
   }
