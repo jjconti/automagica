@@ -4,14 +4,43 @@ function ConvertToSimpleLatex() {
   var numChildren = DocumentApp.getActiveDocument().getActiveSection().getNumChildren();
   var text = '';
   var attachments = [];
+  var inItemize = false;
+  var inEnumerate = false;
 
   // Walk through all the child elements of the doc.
   for (var i = 0; i < numChildren; i++) {
     var child = DocumentApp.getActiveDocument().getActiveSection().getChild(i);
     var result = processParagraph(i, child);
     if (result !== null) {
-     if (result.text && result.text.length > 0) {
-        text += result.text + '\n';
+      if (result && result.length > 0) {
+        if (starts(result, '{itemize}') || starts(result, '{enumerate}')) {
+          if (starts(result, '{itemize}')) {
+            line = result.substring(9);
+            if (!inItemize) {
+              text += '\\begin{itemize}\n'
+              inItemize = true;
+            }
+            text += '\\item ' + line
+          } else {  // enumerate
+            line = result.substring(11);
+            if (!inEnumerate) {
+              text += '\\begin{enumerate}\n'
+              inEnumerate = true;
+            }
+            text += '\\item ' + line
+          }
+        } else {
+          if (inItemize) {
+            text += '\\end{itemize}\n'
+            inItemize = false;
+          }
+          if (inEnumerate) {
+            text += '\\end{enumerate}\n'
+            inEnumerate = false;
+          }
+          text += result
+        }
+        text += '\n';
       }
     }
   }
@@ -74,12 +103,10 @@ function processParagraph(index, element) {
     pOut += processTextElement(textElements[i]);
   }
 
-  result.text = prefix + pOut + suffix;
-
-  return result;
+  return prefix + pOut + suffix;
 }
 
-// Add correct prefix to list items.
+// Add correct prefix to list items and headers.
 function findPrefix(element) {
   var prefix='';
   if (element.getType() === DocumentApp.ElementType.PARAGRAPH) {
@@ -91,7 +118,20 @@ function findPrefix(element) {
       case DocumentApp.ParagraphHeading.HEADING1: prefix+='\\part*{'; break;
       default:
     }
-  }
+  } else if (element.getType() === DocumentApp.ElementType.LIST_ITEM) {
+      var listItem = element;
+      var nesting = listItem.getNestingLevel();
+      var gt = listItem.getGlyphType();
+      // Bullet list (<ul>):
+      if (gt == DocumentApp.GlyphType.BULLET
+          || gt == DocumentApp.GlyphType.HOLLOW_BULLET
+          || gt == DocumentApp.GlyphType.SQUARE_BULLET) {
+        prefix = '{itemize}';
+      } else {
+        // Ordered list (<ol>):
+        prefix = '{enumerate}';
+      }
+    }
   return prefix;
 }
 
