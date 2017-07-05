@@ -1,0 +1,91 @@
+\documentclass[markcolor=black,spinewidth=15mm]{bookcover}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+\usepackage{url}
+\definecolor{amiyellow}{cmyk}{0,0,.5,0}
+\begin{document}
+
+% The outside of the book cover 
+\begin{bookcover}
+
+% Yellow triangle on the back cover by tikz code
+\bookcovercomponent{tikz}{bg back}{
+    \fill[color=amiyellow](.5,.5)--(17.5,24.5)--(17.5,0)--(.5,0)--cycle;}
+
+% Yellow triangle on the front cover by tikz code
+\bookcovercomponent{tikz}{bg front}{
+    \fill[color=amiyellow](0,0)--(0,24.5)--(17,.5)--(17,0)--cycle;}
+
+% Yellow background color on the spine
+\bookcovercomponent{color}{bg spine}{color=amiyellow}
+
+% Remark
+\bookcovercomponent{center}{above front}{
+    \color{red}\textsc{Annales Mathematicae et Informaticae} book cover -- outside}
+
+% Text on the spine
+\bookcovercomponent{center}{spine}{
+    \rotatebox[origin=c]{90}{\footnotesize\bfseries 
+        ANNALES MATHEMATICAE ET INFORMATICAE 43.\ (2014)}}
+
+% Text and pictures (summa.pdf, ekflogo.pdf) on the front cover
+\bookcovercomponent{normal}{front}{
+    \vspace{30.5mm}
+    \centering
+    {\huge\bfseries ANNALES\\ MATHEMATICAE ET\\ INFORMATICAE\\[13mm]}
+    {\large\bfseries TOMUS 43.\ (2014)}\\[10mm]
+    \includegraphics{./figures/summa.pdf}\\[5mm]
+    {\large COMMISSIO REDACTORIUM}\\[3mm]
+    \parbox{123mm}{
+        \centering
+        Sándor Bácsó (Debrecen), Sonja Gorjanc (Zagreb), Tibor Gyimóthy (Szeged),\\
+        Miklós Hoffmann (Eger), József Holovács (Eger), László Kovács (Miskolc),\\
+        László Kozma (Budapest), Kálmán Liptai (Eger), Florian Luca (Mexico),\\
+        Giuseppe Mastroianni (Potenza), Ferenc Mátyás (Eger),\\
+        Ákos Pintér (Debrecen), Miklós Rontó (Miskolc), László Szalay (Sopron),\\
+        János Sztrik (Debrecen), Gary Walsh (Ottawa)\par}
+    \vfill
+    \includegraphics[height=20mm]{./figures/logo.pdf}
+    \vfill
+    {\large\bfseries HUNGARIA, EGER}
+    \vfill}
+
+\end{bookcover}
+
+% The inside of the book cover 
+\begin{bookcover}
+
+% Remark
+\bookcovercomponent{center}{above front}{
+    \color{red}\textsc{Annales Mathematicae et Informaticae} book cover -- inside}
+
+% Text on the front cover (it is back of the inside book cover!)
+\bookcovercomponent{normal}{front}{
+    \vspace{27mm}
+    \begin{center}
+        \bfseries
+        ANNALES MATHEMATICAE ET INFORMATICAE\\[3mm]
+        International journal for mathematics and computer science\\[3mm]
+        Referred by\\
+        Zentralblatt für Mathematik\\
+        and\\
+        Mathematical Reviews\\
+    \end{center}
+    \bigskip
+    \begin{center}
+        \parbox{126mm}{
+            The journal of the Institute of Mathematics and Informatics of 
+            Eszterházy Károly University is open for scientific publications 
+            in mathematics and computer science, where the field of number 
+            theory, group theory, constructive and computer aided geometry 
+            as well as theoretical and practical aspects of programming 
+            languages receive particular emphasis. Methodological papers 
+            are also welcome. Papers submitted to the journal should be 
+            written in English. Only new and unpublished material can be
+            accepted.}
+    \end{center}}
+
+\end{bookcover}
+
+\end{document} 

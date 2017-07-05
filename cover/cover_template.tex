@@ -1,0 +1,70 @@
+\documentclass[12pt,spinewidth=var{SPINE_WIDTH},coverwidth=var{COVER_WIDTH},coverheight=var{COVER_HEIGHT},flapwidth=0cm]{bookcover}
+
+\usepackage[spanish]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+
+\newbookcovercomponenttype{center rotate}{
+    \parbox[t][\partheight][c]{\partwidth}{
+        \begin{center}
+             \rotatebox[origin=c]{90}{#1}
+        \end{center}}}
+\usepackage{contour,lipsum}
+\contourlength{1pt}
+\definecolor{lightbrown}{RGB}{176,88,0}
+var{DEFINED_COLORS}
+%\colorlet{title}{yellow!60!black}
+\colorlet{title}{var{TITLE_COLOR}}
+\begin{document}
+
+\begin{bookcover}
+
+% Black background color on the whole cover
+\bookcovercomponent{color}{bg whole}{color=var{COVER_COLOR}}
+
+% Remark 
+\bookcovercomponent{center}{above front}{
+    \color{blue}var{DESCRIPTION}}
+
+% Picture (cards.png) on the front, behind the title
+\bookcovercomponent{normal}{front}{
+    \vspace{var{IMAGE_VSPACE}}
+    \centering
+    \includegraphics[width=var{IMAGE_WIDTH}]{var{IMAGE_PATH}}
+    \vfill
+    \includegraphics[width=var{LOGO_WIDTH}]{var{LOGO_PATH}}
+    \vspace{5mm}}
+
+% Text on the front cover
+\bookcovercomponent{normal}{front}{
+    \centering
+    \vspace{var{AUTHOR_VSPACE}}
+    \color{title}\Large\bfseries
+    var{AUTHOR}
+    \par
+    \vspace{var{TITLE_VSPACE}}
+    \color{title}\Huge\bfseries
+    var{TITLE}}
+
+% Text on the spine
+\bookcovercomponent{center rotate}{spine}{
+        \color{title}\large
+        var{TITLE} \hspace{var{SPINE_INTERTEXT_SPACE}} var{AUTHOR}}
+
+\bookcovercomponent{center}{spine}{
+        \vfill
+        \includegraphics[width=5mm]{var{SPINE_LOGO_PATH}}
+        \vspace{2mm}}
+
+% Text on the back cover
+\bookcovercomponent{normal}{back}{
+    \centering
+    \vspace{var{BACK_VSPACE}}
+    \parbox{100mm}{\color{var{BACK_TEXT_COLOR}}var{BACK_TEXT}}
+    \vfill
+    \parbox{100mm}{\color{var{BACK_TEXT_COLOR}}http://www.juanjoconti.com/automagica/}
+    \vspace{5mm}}
+
+\end{bookcover}
+
+\end{document} 
