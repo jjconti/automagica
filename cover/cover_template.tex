@@ -13,20 +13,19 @@
 \contourlength{1pt}
 \definecolor{lightbrown}{RGB}{176,88,0}
 var{DEFINED_COLORS}
-%\colorlet{title}{yellow!60!black}
 \colorlet{title}{var{TITLE_COLOR}}
 \begin{document}
 
 \begin{bookcover}
 
-% Black background color on the whole cover
+% Background color on the whole cover
 \bookcovercomponent{color}{bg whole}{color=var{COVER_COLOR}}
 
 % Remark 
 \bookcovercomponent{center}{above front}{
     \color{blue}var{DESCRIPTION}}
 
-% Picture (cards.png) on the front, behind the title
+% Picture on the front, behind the title
 \bookcovercomponent{normal}{front}{
     \vspace{var{IMAGE_VSPACE}}
     \centering
@@ -53,7 +52,7 @@ var{DEFINED_COLORS}
 
 \bookcovercomponent{center}{spine}{
         \vfill
-        \includegraphics[width=5mm]{var{SPINE_LOGO_PATH}}
+        \includegraphics[width=var{SPINE_LOGO_WIDTH}]{var{SPINE_LOGO_PATH}}
         \vspace{2mm}}
 
 % Text on the back cover
@@ -62,8 +61,44 @@ var{DEFINED_COLORS}
     \vspace{var{BACK_VSPACE}}
     \parbox{100mm}{\color{var{BACK_TEXT_COLOR}}var{BACK_TEXT}}
     \vfill
-    \parbox{100mm}{\color{var{BACK_TEXT_COLOR}}http://www.juanjoconti.com/automagica/}
+    %\parbox{100mm}{\color{var{BACK_TEXT_COLOR}}http://www.juanjoconti.com/automagica/}
     \vspace{5mm}}
+
+% Text and picture on the front flap
+\bookcovercomponent{normal}{front flap}{
+    \centering
+    \vspace{20mm}
+    \parbox{75mm}{\color{var{BACK_TEXT_COLOR}}
+Juanjo Conti es un escritor y programador nacido en Carlos Pellegrini, provincia de Santa Fe. Se graduó de Ingeniero en Sistemas de Información en la Facultad Regional Santa Fe, perteneciente a la Universidad Tecnológica Nacional, en el año 2008 y en 2012, obtuvo una maestría en la misma especialidad. Dedica su tiempo libre a la lectura y la escritura.
+Ha publicado los libros de relatos \textit{La máquina de los cuentos} (2010), \textit{Los Caballeros de la Rosa} (2012), \textit{Santa Furia }(2014), \textit{La prueba del dulce de leche} (2014) y \textit{Carne de los dioses} (2016), y  la novela \textit{Xolopes} (2014).
+Es el principal desarrollador del software libre Automágica.
+Actualmente vive en la ciudad de Santa Fe con su esposa y trabaja como programador y consultor.
+
+\vspace{1cm}
+
+
+Blog: http://www.juanjoconti.com/\\
+Mail: jjconti@gmail.com\\
+Twitter: @jjconti\\
+
+}}
+
+% Text on the back flap
+\bookcovercomponent{normal}{back flap}{
+    \vspace{20mm}
+    \includegraphics[width=50mm]{var{LOGO_PATH}}
+    \parbox{75mm}{\color{var{BACK_TEXT_COLOR}}
+\vspace{1cm}
+Automágica es un software libre que toma los originales de un autor escritos en un procesador de texto y genera en forma automática los archivos de tapas e interiores en el formato necesario para que el libro sea enviado a imprenta.
+Consta de una interfaz gráfica, en la que se pueden definir variables generales como el título, el nombre del autor, el tamaño de página, el tamaño de letra. Y otras más específicas como el color de la tapa, el ancho de lomo, el texto de la contratapa, el texto de las solapas  y la imagen de la cubierta.
+También da la flexibilidad necesaria para que usuarios avanzados puedan realizar cambios de diseño no contemplados en la interfaz.
+El programa corre en diferentes sistemas operativos y se encuentra en activo desarrollo.
+
+\vspace{1cm}
+
+Más información:\\
+http://www.juanjoconti.com/automagica/
+}}
 
 \end{bookcover}
 

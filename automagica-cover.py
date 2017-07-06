@@ -35,37 +35,36 @@ def main():
     parser.add_argument('book_path', help='Carpeta dónde se genera la salida.', metavar='Carpeta', widget='DirChooser'
 
 
-                        ,default='/Users/juanjo/automagica/trabajos/realidad/')
-    parser.add_argument('--TITLE', default='TÍTULO', metavar="Título")
-    parser.add_argument('--AUTHOR', default='AUTOR', metavar="Autor")
+                        ,default='/Users/juanjo/automagica/trabajos/xolopes/')
+    parser.add_argument('--TITLE', default='Xolopes', metavar="Título")
+    parser.add_argument('--AUTHOR', default='Juanjo Conti', metavar="Autor")
     parser.add_argument('--COVER_WIDTH', default='12cm', help="Ancho del lomo. Ej: 12cm.")
     parser.add_argument('--COVER_HEIGHT', default='20cm', help="Ancho del lomo. Ej: 20cm.")
-    parser.add_argument('--SPINE_WIDTH', default='10mm', help="Ancho del lomo. Ej: 10mm.")
+    parser.add_argument('--SPINE_WIDTH', default='7mm', help="Ancho del lomo. Ej: 10mm.")
     parser.add_argument('--SPINE_INTERTEXT_SPACE', default='2cm', help="Separación en el lomo. Ej: cmm.")
-    parser.add_argument('--TITLE_COLOR', default='yellow', help='Color del título y el nombre del autor.')
+    parser.add_argument('--TITLE_COLOR', default='{RGB}{176,216,241}', help='Color del título y el nombre del autor.')
     parser.add_argument('--TITLE_VSPACE', default='20mm', help="Espacio vertical antes del título. Ej: 20mm.",
                         metavar='Espacio vertical título')
     parser.add_argument('--AUTHOR_VSPACE', default='20mm', help="Espacio vertical antes del nombre del autor. Ej: 20mm.",
                         metavar='Espacio vertical autor')
-    parser.add_argument('--COVER_COLOR', default='red', help="Color de fondo de la tapa.")
+    parser.add_argument('--COVER_COLOR', default='black', help="Color de fondo de la tapa.")
     parser.add_argument('--IMAGE_WIDTH', default='8cm', help="Ancho de la imagen de tapa. Ej: 8cm.",
                         metavar='Ancho de la imagen')
     parser.add_argument('--IMAGE_PATH', help='Imagen de tapa.', metavar='Imagen', widget='FileChooser'
 
-                        ,default='/Users/juanjo/automagica/cover/figures/tigrebyn.png')
-    parser.add_argument('--LOGO_WIDTH', default='4cm', help="Ancho del logo de la editorial. Ej: 4cm.",
+                        ,default='/Users/juanjo/automagica/trabajos/xolopes/chichen2.png')
+    parser.add_argument('--LOGO_WIDTH', default='3cm', help="Ancho del logo de la editorial. Ej: 4cm.",
                         metavar='Ancho del logo')
     parser.add_argument('--LOGO_PATH', help='Logo de la editorial.', metavar='Logo', widget='FileChooser'
-                        ,default='/Users/juanjo/automagica/cover/figures/automagica.eps')
+                        ,default='/Users/juanjo/automagica/cover/figures/automagica-celeste.png')
     parser.add_argument('--SPINE_LOGO_PATH', help='Logo de la editorial para el lomo.', metavar='Logo en lomo', widget='FileChooser'
-                        ,default='/Users/juanjo/automagica/cover/figures/logo.png')
+                        ,default='/Users/juanjo/automagica/cover/figures/logo-celeste.png')
+    parser.add_argument('--SPINE_LOGO_WIDTH', help='Ancho del logo de la editorial para el lomo.', default='3mm')
     parser.add_argument('--IMAGE_VSPACE', default='90mm', help="Espacio vertical antes de la imagen de tapa. Ej: 90mm.",
                         metavar='Espacio vertical imagen')
     parser.add_argument('--BACK_TEXT', help='Texto de la contratapa.', metavar='Contratapa',
-                        widget='FileChooser'
-
-                        ,default='/Users/juanjo/automagica/trabajos/realidad/contratapa.txt')
-    parser.add_argument('--BACK_TEXT_COLOR', default='black', help='Color del texto de la contratapa.')
+                        widget='FileChooser', default='/Users/juanjo/automagica/trabajos/xolopes/contratapa.txt')
+    parser.add_argument('--BACK_TEXT_COLOR', default='{RGB}{176,216,241}', help='Color del texto de la contratapa.')
     parser.add_argument('--BACK_VSPACE', default='20mm', help="Espacio vertical antes del texto de contratapa. Ej: 20mm.",
                         metavar='Espacio vertical contratapa')
     args = parser.parse_args()
