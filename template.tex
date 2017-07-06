@@ -6,7 +6,7 @@
 \usepackage[Lenny]{fncychap}
 
 \usepackage[spanish]{babel}
-\usepackage[utf8x]{inputenc}
+\usepackage[utf8x]{inputenc}    % changed to utf8 to make hyphenation work
 \usepackage[T1]{fontenc}
 
 \usepackage{mathptmx}
@@ -19,7 +19,7 @@
 \usepackage{courier}
 
 \usepackage{soulutf8}
-
+\usepackage{setspace}
 \renewcommand{\cftchapleader}{\cftdotfill{\cftdotsep}}
 
 % change the space before the titles
@@ -95,6 +95,8 @@ block{ if not exclude_index }
 block{ endif }
 
 \pagenumbering{arabic}
+
+\spacing{var{SPACING}}
 
 var{CONTENT}
 

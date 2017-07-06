@@ -48,6 +48,7 @@ def main():
     parser.add_argument('--SUBTITLE', default='', metavar="Subtítulo")
     parser.add_argument('--AUTHOR', default='AUTOR', metavar="Autor")
     parser.add_argument('--FONT_SIZE', default=11, metavar="Tamaño de la fuente")
+    parser.add_argument('--SPACING', default=1.1, metavar="Interlineado")
     parser.add_argument('--PAGE_SIZE', default='a5paper', metavar="Tamaño de la página")
     parser.add_argument('--YEAR', default=datetime.now().year, metavar="Año")
     parser.add_argument('--URL', default='', metavar="Página web")
