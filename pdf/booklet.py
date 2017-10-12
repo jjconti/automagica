@@ -16,8 +16,6 @@ import os
 
 from pdfrw import PdfReader, PdfWriter, PageMerge
 
-from utils import show_file
-
 
 def fixpage(*pages):
     result = PageMerge() + (x for x in pages if x is not None)
@@ -40,7 +38,6 @@ def generate_booklet(input_file, output_file):
     opages += ipages
 
     PdfWriter().addpages(opages).write(output_file)
-    show_file(output_file)
 
 if __name__ == '__main__':
     inpfn, = sys.argv[1:]
