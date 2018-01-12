@@ -24,7 +24,6 @@ reload(sys)
 sys.setdefaultencoding('utf8')
 
 DEFAULTS = dict(
-    INDEX_TITLE='Índice',
     HYPHENATION='',
     CONTENT='',
 )
@@ -53,6 +52,7 @@ def main():
     parser.add_argument('--YEAR', default=datetime.now().year, metavar="Año")
     parser.add_argument('--URL', default='', metavar="Página web")
     parser.add_argument('--exclude-index', action='store_true', help="No incluir índice.")
+    parser.add_argument('--INDEX_TITLE', default='Índice', metavar="Título del índice")
     args = parser.parse_args()
     book_path = args.book_path
 
