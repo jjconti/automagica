@@ -38,7 +38,7 @@ def main():
                         ,default='/Users/juanjo/automagica/trabajos/xolopes/')
     parser.add_argument('--TITLE', default='Xolopes', metavar="Título")
     parser.add_argument('--AUTHOR', default='Juanjo Conti', metavar="Autor")
-    parser.add_argument('--COVER_WIDTH', default='12cm', help="Ancho del lomo. Ej: 12cm.")
+    parser.add_argument('--COVER_WIDTH', default='12cm', help="Ancho de la tapa. Ej: 12cm.")
     parser.add_argument('--COVER_HEIGHT', default='20cm', help="Ancho del lomo. Ej: 20cm.")
     parser.add_argument('--SPINE_WIDTH', default='7mm', help="Ancho del lomo. Ej: 10mm.")
     parser.add_argument('--SPINE_INTERTEXT_SPACE', default='2cm', help="Separación en el lomo. Ej: cmm.")
