@@ -66,7 +66,7 @@ def latex_single(path, split_paragraphs=False, use_sections=False, new_page_befo
                 else:
                     lines[i] = latex_chapter_title(lines[i])
         sep = '\n\n' if split_paragraphs else ' '
-        return sep.join(lines).replace('&', '\&').replace('%', '\%')
+        return sep.join(lines).replace('&', '\&').replace('%', '\%').replace('$', '\$')
 
 
 def latex_hyphenation(word):
