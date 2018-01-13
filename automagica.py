@@ -15,7 +15,7 @@ from epub import generate_epub
 from pdf import generate_pdf
 from pdf.booklet import generate_booklet
 from template import latex_env
-from utils import filepath, latex_hyphenation, latex_chapter, latex_single
+from utils import filepath, latex_hyphenation, latex_chapter, latex_single, show_file
 
 import site; site.addsitedir("/usr/local/lib/python2.7/site-packages")
 from gooey import Gooey, GooeyParser
@@ -53,6 +53,7 @@ def main():
     parser.add_argument('--URL', default='', metavar="Página web")
     parser.add_argument('--exclude-index', action='store_true', help="No incluir índice.")
     parser.add_argument('--INDEX_TITLE', default='Índice', metavar="Título del índice")
+    parser.add_argument('--no-open', help='No intenta abrir el booklet para verlo.', action='store_true')
     args = parser.parse_args()
     book_path = args.book_path
 
@@ -116,10 +117,18 @@ def main():
     if not args.only_tex:
         if args.pdf or not args.epub:
             pdf_file = generate_pdf(book_path, base_filename, tex_file)
+            if not args.no_open:
+                show_file(pdf_file)
             if args.booklet:
-                generate_booklet(pdf_file, filepath(book_path, base_filename, 'booklet.pdf'))
+                output_file = filepath(book_path, base_filename, 'booklet.pdf')
+                generate_booklet(pdf_file, output_file)
+                if not args.no_open:
+                    show_file(output_file)
         if args.epub:
             generate_epub(book_path, base_filename, tex_file)
+            epub_file = filepath(book_path, base_filename, 'epub')
+            if not args.no_open:
+                show_file(epub_file)
 
 
 if __name__ == '__main__':

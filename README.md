@@ -19,8 +19,8 @@ Funciona en Linux, OS X y Windows.
 
 ## En Linux
 
-* sudo apt-get install pandoc, texlive-full
-* pip install pdfrw
+* sudo apt-get install pandoc texlive-full python-jinja2
+* sudo pip install pdfrw
 
 ## En Windows
 
