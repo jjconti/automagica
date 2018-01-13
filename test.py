@@ -51,6 +51,6 @@ class BuildTest(TestCase):
         cmd = ['diff', 'tests_data/ejemplo_2/sueltos.tex', 'tests_data/sueltos.tex']
         self.assertEqual(self.run_and_assert(cmd), 0, msg="Failed sueltos.tex")
         cmd = ['diff', 'tests_data/ejemplo_single/libro.tex', 'tests_data/libro.tex']
-        self.assertEqual(self.run_and_assert(cmd), 0, msg="Failed default.tex")
+        self.assertEqual(self.run_and_assert(cmd), 0, msg="Failed libro.tex")
         cmd = ['diff', 'tests_data/ejemplo_single/index_excluded.tex', 'tests_data/index_excluded.tex']
         self.assertEqual(self.run_and_assert(cmd), 0, msg="Failed index_excluded.tex")
