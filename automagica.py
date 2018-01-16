@@ -17,8 +17,12 @@ from pdf.booklet import generate_booklet
 from template import latex_env
 from utils import filepath, latex_hyphenation, latex_chapter, latex_single, show_file
 
-import site; site.addsitedir("/usr/local/lib/python2.7/site-packages")
-from gooey import Gooey, GooeyParser
+try:
+    from gooey import Gooey, GooeyParser
+except ImportError:
+    # cat exceptin in travis-ci
+    # gui not used when running tests
+    pass
 
 reload(sys)
 sys.setdefaultencoding('utf8')
