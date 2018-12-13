@@ -24,6 +24,14 @@ Funciona en Linux, OS X y Windows.
 
 ## En Windows
 
+### Forma fácil
+
+Descargar [Automágica para Windows](https://drive.google.com/file/d/1K_DNzm5Snl9r4CQsduM_tDFtIRZltRm5/view?usp=sharing)
+
+### Forma dificil
+
+Instalar paso a paso:
+
 * http://mirror.ctan.org/systems/texlive/tlnet/install-tl-windows.exe (para tener pdflatex.exe)
 * https://github.com/jgm/pandoc/releases/download/1.17.2/pandoc-1.17.2-windows.msi
 * https://www.python.org/ftp/python/2.7.12/python-2.7.12.msi
