@@ -49,7 +49,7 @@ def latex_chapter(path, split_paragraphs=False):
         lines = f.readlines()
         lines[0] = latex_chapter_title(lines[0])
         sep = '\n' if split_paragraphs else ' '
-        return sep.join(lines).replace('&', '\&')
+        return sep.join(lines).replace('&', '\&').replace('%', '\%')
 
 
 def is_title(i, lines):
@@ -66,7 +66,7 @@ def latex_single(path, split_paragraphs=False, use_sections=False, new_page_befo
                 else:
                     lines[i] = latex_chapter_title(lines[i])
         sep = '\n\n' if split_paragraphs else ' '
-        return sep.join(lines).replace('&', '\&')
+        return sep.join(lines).replace('&', '\&').replace('%', '\%').replace('$', '\$')
 
 
 def latex_hyphenation(word):
