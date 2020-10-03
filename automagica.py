@@ -3,7 +3,6 @@
 
 from __future__ import division, print_function, unicode_literals
 
-import site; site.addsitedir("/usr/local/lib/python2.7/site-packages")
 
 import argparse
 import imp
@@ -18,8 +17,6 @@ from pdf.booklet import generate_booklet
 from template import latex_env
 from utils import filepath, latex_hyphenation, latex_chapter, latex_single, show_file
 
-reload(sys)
-sys.setdefaultencoding('utf8')
 
 DEFAULTS = dict(
     INDEX_TITLE='Índice',
