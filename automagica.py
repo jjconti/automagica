@@ -44,7 +44,7 @@ def main():
     parser.add_argument('--YEAR', default=datetime.now().year)
     parser.add_argument('--URL', default='')
     parser.add_argument('--exclude-index', action='store_true')
-    parser.add_argument('--no-open', help='No intenta abrir el booklet para verlo.', action='store_true')
+    parser.add_argument('--no-open', help='No intenta abrir el archivo para verlo.', action='store_true')
     args = parser.parse_args()
     book_path = args.book_path
 
@@ -61,6 +61,7 @@ def main():
         config = EmptyConfig()
         config.CONFIGS = {}
 
+    # TODO: ver precedencia de archivo config por sobre linea de comandos y valores por defecto (quizas tres pasos)
     VARS = DEFAULTS.copy()
     VARS.update(config.CONFIGS)
     for k,v in args._get_kwargs():
@@ -69,6 +70,7 @@ def main():
 
     index_path = os.path.join(book_path, 'index.txt')
 
+    # documentar esto, qué hace por defecto el programa con el texto cuando genera el pdf
     split_paragraphs = not VARS['no_split']
     if os.path.isfile(index_path):
         with open(index_path, 'r') as f:
@@ -84,6 +86,7 @@ def main():
         if text_files:
             VARS['CONTENT'] = latex_single(text_files[0], split_paragraphs, VARS['sections'], VARS['new_page_before_sections'])
 
+    # archivo con separación en sílabas para cortar palabras
     sep_path = os.path.join(book_path, 'words.txt')
     if os.path.isfile(sep_path):
         with open(sep_path, 'r') as f:
