@@ -20,7 +20,7 @@ Funciona en Linux, OS X y Windows.
 ## En Linux
 
 * sudo apt-get install pandoc texlive-full python-jinja2
-* sudo pip install pdfrw
+* sudo pip install Jinja2 pdfrw
 
 ## En Windows
 
