@@ -27,7 +27,7 @@ DEFAULTS = dict(
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--BASE_FILENAME', default='default')
+    parser.add_argument('--BASE_FILENAME')
     parser.add_argument('book_path', help='Carpeta con archivos para un libro.', metavar='carpeta')
     parser.add_argument('--no-split', help='No separar párrafos.', action='store_true')
     parser.add_argument('--pdf', help='Genera la versión pdf del libro.', action='store_true')
@@ -36,13 +36,13 @@ def main():
     parser.add_argument('--only_tex', help='Solo genera el archivo latex.', action='store_true')
     parser.add_argument('--sections', help='Usar secciones en lugar de capítulos como elemento principal.', action='store_true')
     parser.add_argument('--new_page_before_sections', help='Forzar página nueva en las secciones principales.', action='store_true')
-    parser.add_argument('--TITLE', default='TITLE')
-    parser.add_argument('--SUBTITLE', default='')
-    parser.add_argument('--AUTHOR', default='AUTHOR')
-    parser.add_argument('--FONT_SIZE', default=11)
-    parser.add_argument('--PAGE_SIZE', default='a5paper')
-    parser.add_argument('--YEAR', default=datetime.now().year)
-    parser.add_argument('--URL', default='')
+    parser.add_argument('--TITLE')
+    parser.add_argument('--SUBTITLE')
+    parser.add_argument('--AUTHOR')
+    parser.add_argument('--FONT_SIZE')
+    parser.add_argument('--PAGE_SIZE')
+    parser.add_argument('--YEAR')
+    parser.add_argument('--URL')
     parser.add_argument('--exclude_index', action='store_true')
     parser.add_argument('--no_open', help='No intenta abrir el archivo para verlo.', action='store_true')
     args = parser.parse_args()
@@ -58,15 +58,13 @@ def main():
     if os.path.isfile(config_file):
         config = imp.load_source('config', config_file)
     else:
-        config = EmptyConfig()
-        config.CONFIGS = {}
+        config = imp.load_source('config', 'config.py')
 
     # TODO: ver precedencia de archivo config por sobre linea de comandos y valores por defecto (quizas tres pasos)
     VARS = DEFAULTS.copy()
     VARS.update(config.CONFIGS)
-    for k,v in args._get_kwargs():
-        if not VARS.get(k):
-            VARS[k] = v
+    #for k,v in args._get_kwargs():
+     #   VARS[k] = v
 
     index_path = os.path.join(book_path, 'index.txt')
 

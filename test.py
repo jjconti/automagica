@@ -29,10 +29,12 @@ class BuildTest(TestCase):
                 shutil.rmtree(dir)
 
     @staticmethod
-    def run_and_assert(cmd):
+    def run_and_assert(cmd, returncode):
         print("Running: {}".format(cmd))
-        proc = subprocess.Popen(cmd)
-        proc.communicate()
+        proc = subprocess.run(cmd, stdout=subprocess.PIPE)
+        #output = proc.communicate()[0]
+        if proc.returncode != returncode:
+            print (proc.output)
         return proc.returncode
 
     def test_build(self):
@@ -44,13 +46,13 @@ class BuildTest(TestCase):
                     shutil.copy(f, new_dir)
             for params in self.EXAMPLES[ex]:
                 cmd = ['python', 'automagica.py', '--only_tex'] + params + [os.path.join(self.TESTS_DIR, ex)]
-                self.run_and_assert(cmd)
+                self.run_and_assert(cmd, 0)
 
         cmd = ['diff', 'tests_data/ejemplo/jungla.tex', 'tests_data/jungla.tex']
-        self.assertEqual(self.run_and_assert(cmd), 0)
+        self.assertEqual(self.run_and_assert(cmd, 0), 0)
         cmd = ['diff', 'tests_data/ejemplo_2/sueltos.tex', 'tests_data/sueltos.tex']
-        self.assertEqual(self.run_and_assert(cmd), 0)
+        self.assertEqual(self.run_and_assert(cmd, 0), 0)
         cmd = ['diff', 'tests_data/ejemplo_single/default.tex', 'tests_data/default.tex']
-        self.assertEqual(self.run_and_assert(cmd), 0)
+        self.assertEqual(self.run_and_assert(cmd, 0), 0)
         cmd = ['diff', 'tests_data/ejemplo_single/index_excluded.tex', 'tests_data/index_excluded.tex']
-        self.assertEqual(self.run_and_assert(cmd), 0)
+        self.assertEqual(self.run_and_assert(cmd, 0), 0)

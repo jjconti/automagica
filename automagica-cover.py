@@ -9,6 +9,7 @@ from __future__ import division, print_function, unicode_literals
 import argparse
 import os
 import sys
+import imp
 
 from pdf import generate_pdf
 from template import latex_env
@@ -54,19 +55,28 @@ def main():
     args = parser.parse_args()
     book_path = args.book_path
 
+
+    if not os.path.isdir(book_path):
+        print('El argumento debe ser un directorio')
+        exit()
+    config_file = os.path.join(book_path, 'config_cover.py')
+    if os.path.isfile(config_file):
+        config = imp.load_source('config', config_file)
+    else:
+        config = imp.load_source('config', 'config_cover.py')
+
     VARS = {}
-    if args.BACK_TEXT:
-        with open(args.BACK_TEXT, 'r') as back_text_file:
+    VARS.update(config.CONFIGS)
+    if 'BACK_TEXT' in VARS:
+        with open(VARS['BACK_TEXT'], 'r') as back_text_file:
             VARS['BACK_TEXT'] = back_text_file.read()
     else:
         VARS['BACK_TEXT'] = ''
     new_colors = []
-    for k, v in args._get_kwargs():
-        if not VARS.get(k):
-            VARS[k] = v
-            if v:
-                if v.startswith('{gray}') or v.startswith('{rgb}') or v.startswith('{RGB}')or v.startswith('{HTML}') or v.startswith('{cmyk}'):
-                    VARS[k] = add_color(v, new_colors)
+    for k, v in VARS.items():
+        if v:
+            if v.startswith('{gray}') or v.startswith('{rgb}') or v.startswith('{RGB}')or v.startswith('{HTML}') or v.startswith('{cmyk}'):
+                VARS[k] = add_color(v, new_colors)
 
 
     VARS['DEFINED_COLORS'] = '\n'.join(new_colors)
