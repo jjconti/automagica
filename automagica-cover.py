@@ -11,9 +11,10 @@ import os
 import sys
 import imp
 
+
 from pdf import generate_pdf
 from template import latex_env
-from utils import filepath
+from utils import filepath, show_file
 
 
 def add_color(value, colors):
@@ -95,7 +96,8 @@ def main():
     with open(tex_file, 'w') as f:
         f.write(template.render(**VARS))
 
-    generate_pdf(book_path, base_filename, tex_file)
+    pdf_file = generate_pdf(book_path, base_filename, tex_file)
+    show_file(pdf_file)
 
 if __name__ == '__main__':
     main()
