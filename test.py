@@ -18,7 +18,7 @@ class BuildTest(TestCase):
         'ejemplo': [['--YEAR=2016']],
         'ejemplo_no_config': [['--YEAR=2016']],
         'ejemplo_2': [['--YEAR=2016']],
-        'ejemplo_single': [['--YEAR=2016'], ['--YEAR=2016', '--exclude-index', '--BASE_FILENAME=index_excluded']]
+        'ejemplo_single': [['--YEAR=2016'], ['--YEAR=2016', '--exclude_index', '--BASE_FILENAME=index_excluded']]
     }
 
     @classmethod
@@ -43,7 +43,7 @@ class BuildTest(TestCase):
                 if os.path.isfile(f):
                     shutil.copy(f, new_dir)
             for params in self.EXAMPLES[ex]:
-                cmd = ['python', 'automagica.py', '--only-tex'] + params + [os.path.join(self.TESTS_DIR, ex)]
+                cmd = ['python', 'automagica.py', '--only_tex'] + params + [os.path.join(self.TESTS_DIR, ex)]
                 self.run_and_assert(cmd)
 
         cmd = ['diff', 'tests_data/ejemplo/jungla.tex', 'tests_data/jungla.tex']

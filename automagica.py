@@ -33,9 +33,9 @@ def main():
     parser.add_argument('--pdf', help='Genera la versión pdf del libro.', action='store_true')
     parser.add_argument('--booklet', help='Genera la versión booklet del pdf.', action='store_true')
     parser.add_argument('--epub', help='Genera la versión epub del libro.', action='store_true')
-    parser.add_argument('--only-tex', help='Solo genera el archivo latex.', action='store_true')
+    parser.add_argument('--only_tex', help='Solo genera el archivo latex.', action='store_true')
     parser.add_argument('--sections', help='Usar secciones en lugar de capítulos como elemento principal.', action='store_true')
-    parser.add_argument('--new-page-before-sections', help='Forzar página nueva en las secciones principales.', action='store_true')
+    parser.add_argument('--new_page_before_sections', help='Forzar página nueva en las secciones principales.', action='store_true')
     parser.add_argument('--TITLE', default='TITLE')
     parser.add_argument('--SUBTITLE', default='')
     parser.add_argument('--AUTHOR', default='AUTHOR')
@@ -43,8 +43,8 @@ def main():
     parser.add_argument('--PAGE_SIZE', default='a5paper')
     parser.add_argument('--YEAR', default=datetime.now().year)
     parser.add_argument('--URL', default='')
-    parser.add_argument('--exclude-index', action='store_true')
-    parser.add_argument('--no-open', help='No intenta abrir el archivo para verlo.', action='store_true')
+    parser.add_argument('--exclude_index', action='store_true')
+    parser.add_argument('--no_open', help='No intenta abrir el archivo para verlo.', action='store_true')
     args = parser.parse_args()
     book_path = args.book_path
 
